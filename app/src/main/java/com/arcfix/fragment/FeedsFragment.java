@@ -54,7 +54,7 @@ public class FeedsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setAdapter();
+
     }
     void getData(){
 
