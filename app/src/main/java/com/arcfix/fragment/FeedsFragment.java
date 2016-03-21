@@ -86,9 +86,7 @@ public class FeedsFragment extends Fragment {
     }
     void setAdapter(){
         mListView.setItemAnimator(new FadeInAnimator());
-
         mAdapter = new FeedListAdapter(getActivity(), onClick,data);
-
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
         SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
         mListView.setAdapter(scaleAdapter);
