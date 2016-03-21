@@ -14,7 +14,7 @@ import retrofit.http.Path;
  */
 public interface IArcfixApi {
 
-    @GET("api/v1/orgs/56edbcbf7330d803004a7f2a/users/me/feed")
+    @GET("api/v1/orgs/56eff486ce06f403008fff66/users/me/feed")
     Call<MainResponse>  getMainFeeds();
 
 

@@ -65,12 +65,13 @@ public class FeedsFragment extends Fragment {
             public void onResponse(Response<MainResponse> response, Retrofit retrofit) {
                 if(getActivity()==null)
                     return;
-
-                Snackbar.make(getView(),response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 mProgressBar.setVisibility(View.GONE);
                 if(response!=null&&response.body()!=null){
                     data=response.body();
                     setAdapter();
+                }else{
+                    Snackbar.make(getView(),response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    setAdapter();//set dummy adapter
                 }
             }
 
