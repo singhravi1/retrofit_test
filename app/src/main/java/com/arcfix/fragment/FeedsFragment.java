@@ -14,6 +14,7 @@ import com.arcfix.adapter.FeedListAdapter;
 import com.arcfix.rest_api.data_model.MainResponse;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInAnimator;
@@ -30,6 +31,7 @@ public class FeedsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View feedView=inflater.inflate(R.layout.fragment_feeds,null);
+        ButterKnife.bind(this,feedView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
         return feedView;
