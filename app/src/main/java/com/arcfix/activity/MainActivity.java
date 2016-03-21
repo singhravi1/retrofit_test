@@ -22,6 +22,8 @@ import android.view.MenuItem;
 import com.arcfix.R;
 import com.arcfix.fragment.FeedsFragment;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -123,5 +125,9 @@ void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

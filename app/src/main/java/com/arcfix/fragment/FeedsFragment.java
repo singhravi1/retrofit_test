@@ -30,12 +30,18 @@ public class FeedsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View feedView=inflater.inflate(R.layout.fragment_feeds,null);
+    View feedView=inflater.inflate(R.layout.fragment_feeds,container,false);
         ButterKnife.bind(this,feedView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
         return feedView;
 
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setAdapter();
     }
 
     void setAdapter(){
