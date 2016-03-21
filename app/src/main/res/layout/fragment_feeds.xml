@@ -13,4 +13,9 @@
     android:layout_height="wrap_content" android:id="@+id/feed_list">
 
 </android.support.v7.widget.RecyclerView>
+    <ProgressBar  style="?android:attr/progressBarStyleInverse"
+    android:id="@+id/progress_bar"
+        android:indeterminate="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_centerInParent="true" />
 </RelativeLayout>
