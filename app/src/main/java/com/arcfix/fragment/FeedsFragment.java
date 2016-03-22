@@ -20,13 +20,12 @@ import com.arcfix.helper.FeedAdapterCallback;
 import com.arcfix.helper.OnStartDragListener;
 import com.arcfix.helper.SimpleItemTouchHelperCallback;
 import com.arcfix.rest_api.APIClient;
+import com.arcfix.rest_api.data_model.Basic;
 import com.arcfix.rest_api.data_model.Item;
 import com.arcfix.rest_api.data_model.MainResponse;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInAnimator;
 import retrofit.Call;
 import retrofit.Callback;
@@ -48,18 +47,18 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     private int lastRemoved = -1;
     private Item mItemRemoved;
     private ItemTouchHelper mItemTouchHelper;
-    private int visibleItemCount,totalItemCount,firstVisibleItem,previousTotal=0,visibleThreshold=0,current_page=0;
+    private int visibleItemCount, totalItemCount, firstVisibleItem, previousTotal = 0, visibleThreshold = 0, current_page = 0;
 
     private boolean loading;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View feedView = inflater.inflate(R.layout.fragment_feeds, container, false);
         ButterKnife.bind(this, feedView);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-       final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
-        mListView.setHasFixedSize(true);
         mListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -81,9 +80,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                     // Do something
                     current_page++;
 
-                    getData(false);
-
-                    loading = true;
+//                    getData(false);
+//
+//                    loading = true;
                 }
             }
         });
@@ -116,13 +115,25 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                 mProgressBar.setVisibility(View.GONE);
                 if (response != null && response.body() != null) {
                     data = response.body();
+                    Item itemLogin = new Item();
+                    Basic basicLogin = new Basic();
+                    basicLogin.setTitle("Login");
+                    itemLogin.setBasic(basicLogin);
+                    data.getItems().add(itemLogin);
+
+                    Item item = new Item();
+                    Basic basic = new Basic();
+                    basic.setTitle("Upgrade");
+                    item.setBasic(basic);
+                    data.getItems().add(item);
+
                     setAdapter();
                 } else {
                     Snackbar.make(getView(), response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                    setAdapter();//set dummy adapter
+//                    setAdapter();//set dummy adapter
                 }
                 setRefresing(false);
-                loading=false;
+                loading = false;
             }
 
             @Override
@@ -132,7 +143,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                 Snackbar.make(getView(), t.getMessage(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 mProgressBar.setVisibility(View.GONE);
                 setRefresing(false);
-                loading=false;
+                loading = false;
             }
         });
     }
@@ -143,9 +154,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mListView);
-        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
-        SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
-        mListView.setAdapter(scaleAdapter);
+//        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
+//        SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
+        mListView.setAdapter(mAdapter);
 
     }
 
@@ -155,20 +166,6 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
 
         }
     };
-
-
-
-    public void onItemClicked(int position) {
-        mAdapter.notifyItemChanged(position);
-    }
-
-    private void onItemRemovedActionClicked(int position, Item object) {
-
-        lastRemoved = position;
-        mItemRemoved = object;
-    }
-
-
 
 
     @Override
@@ -187,20 +184,21 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         mSwipeRefreshLayout.setRefreshing(refresh);
 
     }
-    FeedAdapterCallback callback=new FeedAdapterCallback() {
+
+    FeedAdapterCallback callback = new FeedAdapterCallback() {
         @Override
         public void onLoadMore() {
             current_page++;
-            loading=true;
-getData(false);
+            loading = true;
+            getData(false);
 
         }
 
         @Override
         public void onItemRemove(int position, Item object) {
-            loading=true;
-            lastRemoved=position;
-            mItemRemoved=object;
+            loading = true;
+            lastRemoved = position;
+            mItemRemoved = object;
             Snackbar snackbar = Snackbar.make(
                     getView(),
                     R.string.item_removed,
@@ -209,12 +207,12 @@ getData(false);
             snackbar.setAction(R.string.undo, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onUndoAction(lastRemoved,mItemRemoved);
+                    onUndoAction(lastRemoved, mItemRemoved);
                 }
             });
             snackbar.setActionTextColor(ContextCompat.getColor(getActivity(), R.color.grey));
             snackbar.show();
-            loading=false;
+            loading = false;
         }
 
         @Override

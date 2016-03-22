@@ -39,6 +39,8 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Context context;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
+
+
     private OnStartDragListener mDragStartListener;
 private FeedAdapterCallback callback;
 
@@ -53,13 +55,13 @@ private FeedAdapterCallback callback;
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
-
             View view = LayoutInflater.from(context).inflate(R.layout.row_feed_list, parent, false);
             return new RowHolder(view);
         } else if (viewType == TYPE_FOOTER) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_layout_footer, parent, false);
             return new FooterHolder(v);
         }
+
         return null;
     }
 
@@ -71,12 +73,25 @@ private FeedAdapterCallback callback;
             ((RowHolder) holder).imgIconVideo.setVisibility(View.VISIBLE);
             ((RowHolder) holder).txtHeading.setTextColor(context.getResources().getColor(R.color.white));
             ((RowHolder) holder).txtHeading.setText(item.getResidue());
-            if(item.getStory()!=null){
+            ((RowHolder) holder).cardFeedRow.setVisibility(View.VISIBLE);
+            ((RowHolder) holder).cardLoginView.setVisibility(View.GONE);
+            ((RowHolder) holder).cardUpdateView.setVisibility(View.GONE);
+            if(item.getBasic()!=null&&item.getBasic().getTitle().equalsIgnoreCase("login")){
+                ((RowHolder) holder).cardFeedRow.setVisibility(View.GONE);
+                ((RowHolder) holder).cardLoginView.setVisibility(View.VISIBLE);
+                ((RowHolder) holder).cardUpdateView.setVisibility(View.GONE);
+            }else if(item.getBasic()!=null&&item.getBasic().getTitle().equalsIgnoreCase("Upgrade")){
+                ((RowHolder) holder).cardFeedRow.setVisibility(View.GONE);
+                ((RowHolder) holder).cardLoginView.setVisibility(View.GONE);
+                ((RowHolder) holder).cardUpdateView.setVisibility(View.VISIBLE);
+            }
+            else if(item.getStory()!=null){
                 ((RowHolder) holder).txtDesc.setText( item.getStory().getDescription());
             }else if(item.getBasic()!=null){
 
                 ((RowHolder) holder).txtDesc.setText( item.getBasic().getTitle());
             }
+
             // Start a drag whenever the handle view it touched
             ((RowHolder )holder).cardFeedRow.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -87,30 +102,40 @@ private FeedAdapterCallback callback;
                     return false;
                 }
             });
+
+            ((RowHolder )holder).cardLoginView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        mDragStartListener.onStartDrag(holder);
+                    }
+                    return true;
+                }
+            });
+
+            ((RowHolder )holder).cardUpdateView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        mDragStartListener.onStartDrag(holder);
+                    }
+                    return false;
+                }
+            });
         } else if (holder instanceof FooterHolder) {
 //TODO:
-            ((FooterHolder )holder).cardLoginView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-
-                    return false;
-                }
-            });
-            ((FooterHolder )holder).cardUpdateView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-
-                    return false;
-                }
-            });
             ((FooterHolder )holder).cardViewMore.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        mDragStartListener.onStartDrag(holder);
+                    }
                     return false;
                 }
             });
         }
+
+
     }
 
 
@@ -121,12 +146,12 @@ private FeedAdapterCallback callback;
 
     @Override
     public int getItemViewType(int position) {
-        if (data!=null?position < data.getItems().size():position<6) {
+        if (data!=null?position < data.getItems().size():position<4) {
             return TYPE_ITEM;
-        } else if (data!=null?position == data.getItems().size():position==6) {
+        } else if (!isLoadmoreremoved&&data!=null?position == data.getItems().size():position==6) {
             return TYPE_FOOTER;
         }
-        return TYPE_ITEM;
+        return -1;
     }
 
     @Override
@@ -136,15 +161,21 @@ private FeedAdapterCallback callback;
         notifyItemMoved(fromPosition, toPosition);
         return false;
     }
-
+private boolean isLoginRemoved=false;
+    private boolean isUpgardeRemoved=false;
+    private boolean isLoadmoreremoved=false;
     @Override
     public void onItemDismiss(int position) {
         if(position<data.getItems().size()) {
             callback.onItemRemove(position,data.getItems().get(position));
             data.getItems().remove(position);
-            notifyItemRemoved(position);
-
-        }}
+        }
+//        else if(position<data.getItems().size()){
+//            isLoadmoreremoved=true;
+//        }
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
+    }
 
     public class RowHolder extends RecyclerView.ViewHolder implements
             ItemTouchHelperViewHolder {
@@ -178,16 +209,50 @@ private FeedAdapterCallback callback;
         LinearLayout lnrShare;
 
 
+        @Bind(R.id.card_login_view)
+        CardView cardLoginView;
+
+
+        @Bind(R.id.lnr_dismiss_login)
+        LinearLayout lnrDismissLogin;
+
+        @Bind(R.id.lnr_login)
+        LinearLayout lnrLogin;
+
+
+        @Bind(R.id.card_update_view)
+        CardView cardUpdateView;
+
+
+
+        @Bind(R.id.lnr_dismiss_update)
+        LinearLayout lnrDismissUpdate;
+
+        @Bind(R.id.lnr_yes_update)
+        LinearLayout yesUpdateLnr;
+
         public RowHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick({})
+        @OnClick({ R.id.lnr_dismiss_update, R.id.lnr_yes_update,R.id.lnr_login,  R.id.lnr_dismiss_login})
         void onViewClick(View view) {
+            switch (view.getId()) {
 
+                case R.id.lnr_yes_update:
+                    break;
+                case R.id.lnr_dismiss_update:
+                    cardUpdateView.setVisibility(View.GONE);
+                    break;
+                case R.id.lnr_dismiss_login:
+                    cardLoginView.setVisibility(View.GONE);
+                    break;
+                case R.id.lnr_login:
+                    break;
+
+            }
         }
-
         @Override
         public void onItemSelected() {
             itemView.setBackgroundColor(Color.LTGRAY);
@@ -203,43 +268,16 @@ private FeedAdapterCallback callback;
 
         @Bind(R.id.card_load_more_view)
         CardView cardViewMore;
-        @Bind(R.id.card_login_view)
-        CardView cardLoginView;
 
-        @Bind(R.id.card_update_view)
-        CardView cardUpdateView;
-
-        @Bind(R.id.lnr_dismiss_login)
-        LinearLayout lnrDismissLogin;
-
-        @Bind(R.id.lnr_login)
-        LinearLayout lnrLogin;
-
-        @Bind(R.id.lnr_dismiss_update)
-        LinearLayout lnrDismissUpdate;
-
-        @Bind(R.id.lnr_yes_update)
-        LinearLayout yesUpdateLnr;
 
         public FooterHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick({R.id.lnr_login, R.id.lnr_dismiss_update, R.id.lnr_dismiss_login, R.id.lnr_yes_update, R.id.card_load_more_view})
+        @OnClick({ R.id.card_load_more_view})
         void onViewClick(View view) {
             switch (view.getId()) {
-                case R.id.lnr_dismiss_login:
-
-                    cardLoginView.setVisibility(View.GONE);
-                    break;
-                case R.id.lnr_login:
-                    break;
-                case R.id.lnr_yes_update:
-                    break;
-                case R.id.lnr_dismiss_update:
-                    cardUpdateView.setVisibility(View.GONE);
-                    break;
                 case R.id.card_load_more_view:
 
                     //TODO: call API
