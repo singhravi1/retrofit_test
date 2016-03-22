@@ -59,6 +59,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         mSwipeRefreshLayout.setOnRefreshListener(this);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
+        mListView.setItemAnimator(new FadeInAnimator());
         mListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -149,14 +150,22 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     }
 
     void setAdapter() {
-        mListView.setItemAnimator(new FadeInAnimator());
+        if(mAdapter==null){
         mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
+        }else{
+            mAdapter.setData(data);
+            mAdapter.notifyDataSetChanged();
+        }
+        if(mItemTouchHelper==null){
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
+
         mItemTouchHelper.attachToRecyclerView(mListView);
+            mListView.setAdapter(mAdapter);
+        }
 //        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
 //        SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
-        mListView.setAdapter(mAdapter);
+
 
     }
 

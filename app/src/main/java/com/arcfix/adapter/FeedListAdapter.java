@@ -43,7 +43,9 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private OnStartDragListener mDragStartListener;
 private FeedAdapterCallback callback;
-
+public void setData(MainResponse data){
+    this.data=data;
+}
     public FeedListAdapter(Context context, View.OnClickListener onClick, MainResponse data,OnStartDragListener dragStartListener,FeedAdapterCallback callback) {
         this.context = context;
         this.mDragStartListener = dragStartListener;
