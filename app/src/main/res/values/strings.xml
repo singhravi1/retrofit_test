@@ -17,5 +17,6 @@
 <string name="yes">Yes</string>
     <string name="load_more">Load More News</string>
     <string name="undo">Undo</string>
+    <string name="item_removed">Item has been removed</string>
 </resources>
 

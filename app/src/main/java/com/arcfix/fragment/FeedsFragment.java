@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 
 import com.arcfix.R;
 import com.arcfix.adapter.FeedListAdapter;
+import com.arcfix.helper.FeedAdapterCallback;
 import com.arcfix.helper.OnStartDragListener;
 import com.arcfix.helper.SimpleItemTouchHelperCallback;
 import com.arcfix.rest_api.APIClient;
@@ -47,17 +48,45 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     private int lastRemoved = -1;
     private Item mItemRemoved;
     private ItemTouchHelper mItemTouchHelper;
+    private int visibleItemCount,totalItemCount,firstVisibleItem,previousTotal=0,visibleThreshold=0,current_page=0;
 
+    private boolean loading;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View feedView = inflater.inflate(R.layout.fragment_feeds, container, false);
         ButterKnife.bind(this, feedView);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+       final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
         mListView.setHasFixedSize(true);
+        mListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                visibleItemCount = recyclerView.getChildCount();
+                totalItemCount = layoutManager.getItemCount();
+                firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
 
+                if (loading) {
+                    if (totalItemCount > previousTotal) {
+                        loading = false;
+                        previousTotal = totalItemCount;
+                    }
+                }
+                if (!loading && (totalItemCount - visibleItemCount)
+                        < (firstVisibleItem + visibleThreshold)) {
+                    // End has been reached
+
+                    // Do something
+                    current_page++;
+
+                    getData(false);
+
+                    loading = true;
+                }
+            }
+        });
         if (data == null) {
             getData(true);
         } else {
@@ -74,6 +103,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     }
 
     void getData(boolean showProgressBar) {
+        //TODO:  check if internet is available
         if (showProgressBar) {
             mProgressBar.setVisibility(View.VISIBLE);
         }
@@ -92,6 +122,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                     setAdapter();//set dummy adapter
                 }
                 setRefresing(false);
+                loading=false;
             }
 
             @Override
@@ -101,13 +132,14 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                 Snackbar.make(getView(), t.getMessage(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 mProgressBar.setVisibility(View.GONE);
                 setRefresing(false);
+                loading=false;
             }
         });
     }
 
     void setAdapter() {
         mListView.setItemAnimator(new FadeInAnimator());
-        mAdapter = new FeedListAdapter(getActivity(), onClick, data, this);
+        mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mListView);
@@ -124,31 +156,6 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         }
     };
 
-    /**
-     * This method will be called when a list item is removed
-     *
-     * @param position The position of the item within data set
-     */
-    public void onItemRemoved(int position) {
-        Snackbar snackbar = Snackbar.make(
-                getView(),
-                R.string.app_name,
-                Snackbar.LENGTH_LONG);
-
-        snackbar.setAction(R.string.undo, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemUndoActionClicked();
-            }
-        });
-        snackbar.setActionTextColor(ContextCompat.getColor(getActivity(), R.color.grey));
-        snackbar.show();
-    }
-
-
-    public void onItemPinned(int position) {
-
-    }
 
 
     public void onItemClicked(int position) {
@@ -162,11 +169,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     }
 
 
-    private void onItemUndoActionClicked() {
-//        set last removed object in variable
-        data.getItems().add(lastRemoved, mItemRemoved);
-        mAdapter.notifyItemInserted(lastRemoved);
-    }
+
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
@@ -175,13 +178,56 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
 
     @Override
     public void onRefresh() {
+        loading = true;
         getData(false);
     }
 
     public void setRefresing(boolean refresh) {
+        loading = refresh;
         mSwipeRefreshLayout.setRefreshing(refresh);
 
     }
+    FeedAdapterCallback callback=new FeedAdapterCallback() {
+        @Override
+        public void onLoadMore() {
+            current_page++;
+            loading=true;
+getData(false);
+
+        }
+
+        @Override
+        public void onItemRemove(int position, Item object) {
+            loading=true;
+            lastRemoved=position;
+            mItemRemoved=object;
+            Snackbar snackbar = Snackbar.make(
+                    getView(),
+                    R.string.item_removed,
+                    Snackbar.LENGTH_LONG);
+
+            snackbar.setAction(R.string.undo, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onUndoAction(lastRemoved,mItemRemoved);
+                }
+            });
+            snackbar.setActionTextColor(ContextCompat.getColor(getActivity(), R.color.grey));
+            snackbar.show();
+            loading=false;
+        }
+
+        @Override
+        public void onUndoAction(int position, Item object) {
+            data.getItems().add(lastRemoved, mItemRemoved);
+            mAdapter.notifyItemInserted(lastRemoved);
+        }
+
+        @Override
+        public void onDragDrop(int positionOne, int positiontwo) {
+
+        }
+    };
 }
 
 

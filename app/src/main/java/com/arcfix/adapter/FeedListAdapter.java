@@ -15,9 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.arcfix.R;
+import com.arcfix.helper.FeedAdapterCallback;
 import com.arcfix.helper.ItemTouchHelperAdapter;
 import com.arcfix.helper.ItemTouchHelperViewHolder;
 import com.arcfix.helper.OnStartDragListener;
+import com.arcfix.rest_api.data_model.Item;
 import com.arcfix.rest_api.data_model.MainResponse;
 import com.squareup.picasso.Picasso;
 
@@ -38,13 +40,14 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
     private OnStartDragListener mDragStartListener;
+private FeedAdapterCallback callback;
 
-
-    public FeedListAdapter(Context context, View.OnClickListener onClick, MainResponse data,OnStartDragListener dragStartListener) {
+    public FeedListAdapter(Context context, View.OnClickListener onClick, MainResponse data,OnStartDragListener dragStartListener,FeedAdapterCallback callback) {
         this.context = context;
         this.mDragStartListener = dragStartListener;
         this.onClick = onClick;
         this.data = data;
+        this.callback=callback;
     }
 
     @Override
@@ -63,9 +66,17 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RowHolder) {
+            Item item=data.getItems().get(position);
             Picasso.with(context).load(R.mipmap.dummy).into(((RowHolder) holder).imgBig);
             ((RowHolder) holder).imgIconVideo.setVisibility(View.VISIBLE);
             ((RowHolder) holder).txtHeading.setTextColor(context.getResources().getColor(R.color.white));
+            ((RowHolder) holder).txtHeading.setText(item.getResidue());
+            if(item.getStory()!=null){
+                ((RowHolder) holder).txtDesc.setText( item.getStory().getDescription());
+            }else if(item.getBasic()!=null){
+
+                ((RowHolder) holder).txtDesc.setText( item.getBasic().getTitle());
+            }
             // Start a drag whenever the handle view it touched
             ((RowHolder )holder).cardFeedRow.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -120,6 +131,7 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        callback.onDragDrop(fromPosition,toPosition);
         Collections.swap(data.getItems(), fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return false;
@@ -128,8 +140,8 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onItemDismiss(int position) {
         if(position<data.getItems().size()) {
+            callback.onItemRemove(position,data.getItems().get(position));
             data.getItems().remove(position);
-
             notifyItemRemoved(position);
 
         }}
@@ -232,6 +244,7 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     //TODO: call API
                     cardViewMore.setVisibility(View.GONE);
+                    callback.onLoadMore();
                     break;
 
             }
