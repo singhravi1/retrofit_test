@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="4dp"
+    android:elevation="4dp" android:id="@+id/card_feed_row"
     card_view:cardCornerRadius="1dp"
     style="@style/card_style"
     tools:ignore="MissingPrefix">

@@ -1,9 +1,13 @@
 package com.arcfix.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.view.MotionEventCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,8 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.arcfix.R;
+import com.arcfix.helper.ItemTouchHelperAdapter;
+import com.arcfix.helper.ItemTouchHelperViewHolder;
+import com.arcfix.helper.OnStartDragListener;
 import com.arcfix.rest_api.data_model.MainResponse;
 import com.squareup.picasso.Picasso;
+
+import java.util.Collections;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,16 +30,19 @@ import butterknife.OnClick;
 /**
  * Created by deep on 21/03/16.
  */
-public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter {
 
     private MainResponse data;
     private View.OnClickListener onClick;
     private Context context;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_FOOTER = 2;
+    private OnStartDragListener mDragStartListener;
 
-    public FeedListAdapter(Context context, View.OnClickListener onClick, MainResponse data) {
+
+    public FeedListAdapter(Context context, View.OnClickListener onClick, MainResponse data,OnStartDragListener dragStartListener) {
         this.context = context;
+        this.mDragStartListener = dragStartListener;
         this.onClick = onClick;
         this.data = data;
     }
@@ -49,13 +61,44 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RowHolder) {
             Picasso.with(context).load(R.mipmap.dummy).into(((RowHolder) holder).imgBig);
             ((RowHolder) holder).imgIconVideo.setVisibility(View.VISIBLE);
             ((RowHolder) holder).txtHeading.setTextColor(context.getResources().getColor(R.color.white));
+            // Start a drag whenever the handle view it touched
+            ((RowHolder )holder).cardFeedRow.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        mDragStartListener.onStartDrag(holder);
+                    }
+                    return false;
+                }
+            });
         } else if (holder instanceof FooterHolder) {
+//TODO:
+            ((FooterHolder )holder).cardLoginView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
 
+                    return false;
+                }
+            });
+            ((FooterHolder )holder).cardUpdateView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    return false;
+                }
+            });
+            ((FooterHolder )holder).cardViewMore.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    return false;
+                }
+            });
         }
     }
 
@@ -75,8 +118,27 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return TYPE_ITEM;
     }
 
-    public class RowHolder extends RecyclerView.ViewHolder {
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        Collections.swap(data.getItems(), fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+        return false;
+    }
 
+    @Override
+    public void onItemDismiss(int position) {
+        if(position<data.getItems().size()) {
+            data.getItems().remove(position);
+
+            notifyItemRemoved(position);
+
+        }}
+
+    public class RowHolder extends RecyclerView.ViewHolder implements
+            ItemTouchHelperViewHolder {
+
+        @Bind(R.id.card_feed_row)
+        CardView cardFeedRow;
         @Bind(R.id.image_company_icon)
         ImageView imgCompanyLogo;
         @Bind(R.id.img_item_big_video)
@@ -112,6 +174,16 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @OnClick({})
         void onViewClick(View view) {
 
+        }
+
+        @Override
+        public void onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.setBackgroundColor(Color.WHITE);
         }
     }
 
