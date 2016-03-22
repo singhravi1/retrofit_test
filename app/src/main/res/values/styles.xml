@@ -16,37 +16,40 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-<style name="text_heading_20dp" parent="TextAppearance.FontPath">
-    <item name="android:textColor">@color/text_bold_large</item>
 
-    <item name="android:textSize">20dp</item>
-</style>
+    <style name="text_heading_20dp" parent="TextAppearance.FontPath">
+        <item name="android:textColor">@color/text_bold_large</item>
+
+        <item name="android:textSize">20dp</item>
+    </style>
+
     <style name="text_normal_14dp" parent="TextAppearance.FontPath">
         <item name="android:textColor">@color/text_normal</item>
 
         <item name="android:textSize">14dp</item>
 
     </style>
+
     <style name="text_normal_11dp" parent="text_normal_14dp">
         <item name="android:textColor">@color/text_normal</item>
 
         <item name="android:textSize">11dp</item>
 
     </style>
+
     <style name="TextAppearance.FontPath" parent="android:TextAppearance">
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Roboto-Regular.ttf</item>
     </style>
+
     <style name="card_style">
-<item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
 
         <item name="android:layout_margin">@dimen/card_view_margin</item>
 
-        <item name="android:elevation">4dp</item>
 
-        <item name="card_view:cardCornerRadius">1dp</item>
-        <item name="tools:ignore">MissingPrefix</item>
+
 
     </style>
 </resources>
