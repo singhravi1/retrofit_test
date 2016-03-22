@@ -36,16 +36,17 @@ public class FeedsFragment extends Fragment {
     ProgressBar mProgressBar;
     private MainResponse data;
     private FeedListAdapter mAdapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View feedView=inflater.inflate(R.layout.fragment_feeds,container,false);
-        ButterKnife.bind(this,feedView);
+        View feedView = inflater.inflate(R.layout.fragment_feeds, container, false);
+        ButterKnife.bind(this, feedView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
-        if(data==null){
+        if (data == null) {
             getData();
-        }else{
+        } else {
             setAdapter();
         }
         return feedView;
@@ -56,42 +57,44 @@ public class FeedsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
-    void getData(){
 
+    void getData() {
         mProgressBar.setVisibility(View.VISIBLE);
-        Call<MainResponse> apiCall= APIClient.getInstance().getRestAdapter().getMainFeeds();
+        Call<MainResponse> apiCall = APIClient.getInstance().getRestAdapter().getMainFeeds();
         apiCall.enqueue(new Callback<MainResponse>() {
             @Override
             public void onResponse(Response<MainResponse> response, Retrofit retrofit) {
-                if(getActivity()==null)
+                if (getActivity() == null)
                     return;
                 mProgressBar.setVisibility(View.GONE);
-                if(response!=null&&response.body()!=null){
-                    data=response.body();
+                if (response != null && response.body() != null) {
+                    data = response.body();
                     setAdapter();
-                }else{
-                    Snackbar.make(getView(),response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                } else {
+                    Snackbar.make(getView(), response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     setAdapter();//set dummy adapter
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                if(getActivity()==null)
+                if (getActivity() == null)
                     return;
-                Snackbar.make(getView(),t.getMessage(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(getView(), t.getMessage(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 mProgressBar.setVisibility(View.GONE);
             }
         });
     }
-    void setAdapter(){
+
+    void setAdapter() {
         mListView.setItemAnimator(new FadeInAnimator());
-        mAdapter = new FeedListAdapter(getActivity(), onClick,data);
+        mAdapter = new FeedListAdapter(getActivity(), onClick, data);
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
         SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
         mListView.setAdapter(scaleAdapter);
     }
-    private View.OnClickListener onClick=new View.OnClickListener() {
+
+    private View.OnClickListener onClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 

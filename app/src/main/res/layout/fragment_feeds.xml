@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
-    android:divider="@null"
-    android:dividerHeight="0dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:listSelector="@android:color/transparent"
-    android:layout_height="wrap_content" android:id="@+id/feed_list">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/feed_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-</android.support.v7.widget.RecyclerView>
-    <ProgressBar  style="?android:attr/progressBarStyleInverse"
-    android:id="@+id/progress_bar"
-        android:indeterminate="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:listSelector="@android:color/transparent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleInverse"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_centerInParent="true" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true" />
 </RelativeLayout>

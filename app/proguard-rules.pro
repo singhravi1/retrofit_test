@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontwarn com.squareup.okhttp.**
+-keep class uk.co.chrisjenx.calligraphy.* { *; }
+-keep class uk.co.chrisjenx.calligraphy.*$* { *; }
+-keep class **$$ViewBinder { *; }
+-dontwarn butterknife.internal.**

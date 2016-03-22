@@ -37,4 +37,16 @@
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Roboto-Regular.ttf</item>
     </style>
+    <style name="card_style">
+<item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:layout_margin">@dimen/card_view_margin</item>
+
+        <item name="android:elevation">4dp</item>
+
+        <item name="card_view:cardCornerRadius">1dp</item>
+        <item name="tools:ignore">MissingPrefix</item>
+
+    </style>
 </resources>
