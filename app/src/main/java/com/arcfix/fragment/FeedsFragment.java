@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.arcfix.R;
 import com.arcfix.adapter.FeedListAdapter;
@@ -150,6 +151,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                 mProgressBar.setVisibility(View.GONE);
                 setRefresing(false);
                 loading = false;
+
             }
         });
     }

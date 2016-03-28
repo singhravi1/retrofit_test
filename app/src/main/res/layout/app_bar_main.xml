@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+
     tools:context=".activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+        android:layout_width="match_parent" android:fitsSystemWindows="true"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar"  app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -31,6 +31,10 @@
         android:layout_height="wrap_content" android:visibility="visible"
         android:layout_gravity="bottom|end" app:rippleColor="@color/grey"
         android:layout_margin="@dimen/fab_margin"
+
         android:src="@mipmap/ic_textsms_white_24dp" />
+
+    <!-- app:layout_anchor="@+id/feed_list"
+     app:layout_anchorGravity="bottom|right|end"-->
 
 </android.support.design.widget.CoordinatorLayout>
