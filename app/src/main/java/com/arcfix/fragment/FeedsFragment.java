@@ -47,9 +47,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     private int lastRemoved = -1;
     private Item mItemRemoved;
     private ItemTouchHelper mItemTouchHelper;
-    private int visibleItemCount, totalItemCount, firstVisibleItem, previousTotal = 0, visibleThreshold = 0, current_page = 0;
+    private int visibleItemCount, totalItemCount, firstVisibleItem, previousTotal = 0, visibleThreshold = 1, current_page = 0;
 
-    private boolean loading;
+    private boolean loading=true;
 
     @Nullable
     @Override
@@ -81,9 +81,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                     // Do something
                     current_page++;
 
-//                    getData(false);
+                    getData(false);
 //
-//                    loading = true;
+                    loading = true;
                 }
             }
         });
@@ -115,7 +115,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                     return;
                 mProgressBar.setVisibility(View.GONE);
                 if (response != null && response.body() != null) {
-                    data = response.body();
+
+                    if(data==null){
+                        data = response.body();
                     Item itemLogin = new Item();
                     Basic basicLogin = new Basic();
                     basicLogin.setTitle("Login");
@@ -128,6 +130,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                     item.setBasic(basic);
                     data.getItems().add(item);
 
+                    }else{
+                        data.getItems().addAll(response.body().getItems());
+                    }
                     setAdapter();
                 } else {
                     Snackbar.make(getView(), response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
