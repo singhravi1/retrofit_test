@@ -21,6 +21,8 @@ import android.view.MenuItem;
 
 import com.arcfix.R;
 import com.arcfix.fragment.FeedsFragment;
+import com.arcfix.fragment.FragmentTabsHome;
+import com.arcfix.fragment.InquiryFragment;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if(savedInstanceState==null){
-            replaceFragment(FeedsFragment.class.getName(),FeedsFragment.class.getName(),null,null);
+            replaceFragment(FragmentTabsHome.class.getName(),FragmentTabsHome.class.getName(),null,null);
         }
     }
 void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
@@ -108,8 +110,8 @@ void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_inquiry) {
+            replaceFragment(InquiryFragment.class.getName(),InquiryFragment.class.getName(),FragmentTabsHome.class.getName(),null);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

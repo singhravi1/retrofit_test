@@ -257,6 +257,7 @@ private boolean isLoginRemoved=false;
         }
         @Override
         public void onItemSelected() {
+
             itemView.setBackgroundColor(Color.LTGRAY);
         }
 

@@ -18,5 +18,31 @@
     <string name="load_more">Load More News</string>
     <string name="undo">Undo</string>
     <string name="item_removed">Item has been removed</string>
+
+    <string name="inquiry_form">Inquiry Form</string>
+
+    <string name="inquiry_sub_title">Lorem ipsum dolar sid amut edo conceptetetuazuze zabaro silantis apu</string>
+
+    <string name="type_of_enquiry">Type of Inquiry</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send_inquiry">Send Inquiry</string>
+    <string-array name="type_inquiry">
+        <item>@string/type_of_enquiry</item>
+        <item>Inquiry type</item>
+    </string-array>
+
+    <string name="news_feed">NewsFeed</string>
+
+    <string name="favorites">Favorites</string>
+
+    <string name="archive">Archive</string>
+    <string-array name="tab_title">
+        <item>@string/news_feed</item>
+
+        <item>@string/favorites</item>
+
+        <item>@string/archive</item>
+    </string-array>
 </resources>
 

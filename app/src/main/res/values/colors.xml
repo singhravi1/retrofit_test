@@ -10,4 +10,6 @@
     <color name="text_bold_large">#3F3F3F</color>
     <color name="text_normal">#424242</color>
     <color name="floating_button_tint">#9B8343</color>
+    <color name="form_bg">#F0F0F0</color>
+    <color name="dark_orange">#9B8343</color>
 </resources>
