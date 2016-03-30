@@ -2,6 +2,8 @@ package com.arcfix.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -23,6 +25,8 @@ public class FragmentTabsHome extends Fragment{
     TabLayout mTabLayout;
     @Bind(R.id.viewpager)
     ViewPager mViewPager;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,8 @@ public class FragmentTabsHome extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
+
+
         mViewPager.setAdapter(new TabPagerAdapter(getChildFragmentManager(),
                 getActivity()));
         mTabLayout.setupWithViewPager(mViewPager);

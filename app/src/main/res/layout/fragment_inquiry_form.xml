@@ -44,12 +44,12 @@
             android:layout_width="match_parent" android:maxLines="6" android:gravity="bottom|start"
             android:minLines="3" android:id="@+id/edt_message_inquiry"
             android:layout_height="wrap_content" android:hint="@string/message"
-            android:inputType="text" android:imeOptions="actionDone"
+            android:inputType="text" android:imeOptions="actionDone|actionNext"
             android:textColor="@color/text_normal"
             />
     </android.support.design.widget.TextInputLayout>
     <Button android:background="@drawable/button_selector" android:layout_marginTop="30dp" android:layout_marginBottom="20dp"
-        android:layout_width="match_parent" android:text="@string/send_inquiry"
+        android:layout_width="match_parent" android:text="@string/send_inquiry" android:id="@+id/btn_submit_inquiry"
         android:layout_height="wrap_content"
         android:textColor="@color/white"/>
 </LinearLayout>

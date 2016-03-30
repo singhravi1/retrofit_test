@@ -24,19 +24,24 @@ import com.arcfix.fragment.FeedsFragment;
 import com.arcfix.fragment.FragmentTabsHome;
 import com.arcfix.fragment.InquiryFragment;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,10 +59,18 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if(savedInstanceState==null){
+            fab.setVisibility(View.VISIBLE);
             replaceFragment(FragmentTabsHome.class.getName(),FragmentTabsHome.class.getName(),null,null);
         }
     }
 void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
+    if(fName.equalsIgnoreCase(InquiryFragment.class.getName())){
+
+        fab.setVisibility(View.GONE);
+    }else{
+
+        fab.setVisibility(View.VISIBLE);
+    }
     Fragment fragment=Fragment.instantiate(this,fName,data);
     FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
     transaction.replace(R.id.content_main,fragment,tag);
