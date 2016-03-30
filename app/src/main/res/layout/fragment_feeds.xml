@@ -19,7 +19,6 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:listSelector="@android:color/transparent">
-
     </android.support.v7.widget.RecyclerView>
 </android.support.v4.widget.SwipeRefreshLayout>
     <ProgressBar

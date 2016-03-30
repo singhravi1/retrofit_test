@@ -11,12 +11,12 @@ import com.arcfix.fragment.FeedsFragment;
 /**
  * Created by deep on 30/03/16.
  */
-public class TabPagerAdapter  extends FragmentPagerAdapter {
+public class HomeTabPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
     private String tabTitles[] ;
     private Context context;
 
-    public TabPagerAdapter(FragmentManager fm, Context context) {
+    public HomeTabPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
         tabTitles = context.getResources().getStringArray(R.array.tab_title);

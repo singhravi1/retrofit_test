@@ -44,5 +44,14 @@
 
         <item>@string/archive</item>
     </string-array>
+
+    <string name="all_messages">All Messages</string>
+    <string name="archive_messages">Archived Messages</string>
+    <string-array name="message_tab_title">
+        <item>@string/all_messages</item>
+
+        <item>@string/archive_messages</item>
+
+    </string-array>
 </resources>
 

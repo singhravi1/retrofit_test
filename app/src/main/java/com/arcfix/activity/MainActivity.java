@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.arcfix.R;
+import com.arcfix.fragment.ChatTabFragment;
 import com.arcfix.fragment.FeedsFragment;
 import com.arcfix.fragment.FragmentTabsHome;
 import com.arcfix.fragment.InquiryFragment;
@@ -64,11 +65,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
-    if(fName.equalsIgnoreCase(InquiryFragment.class.getName())){
-
+    if(fName.equalsIgnoreCase(InquiryFragment.class.getName())||fName.equalsIgnoreCase(ChatTabFragment.class.getName())){
         fab.setVisibility(View.GONE);
     }else{
-
         fab.setVisibility(View.VISIBLE);
     }
     Fragment fragment=Fragment.instantiate(this,fName,data);
@@ -125,15 +124,8 @@ void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
 
         if (id == R.id.nav_inquiry) {
             replaceFragment(InquiryFragment.class.getName(),InquiryFragment.class.getName(),FragmentTabsHome.class.getName(),null);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_messages) {
+            replaceFragment(ChatTabFragment.class.getName(),ChatTabFragment.class.getName(),FragmentTabsHome.class.getName(),null);
 
         }
 
