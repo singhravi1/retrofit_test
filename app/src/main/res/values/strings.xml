@@ -37,6 +37,9 @@
     <string name="favorites">Favorites</string>
 
     <string name="archive">Archive</string>
+    <string name="inquiry">Inquiry</string>
+
+    <string name="messages">Messages</string>
     <string-array name="tab_title">
         <item>@string/news_feed</item>
 

@@ -125,7 +125,7 @@ void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
         if (id == R.id.nav_inquiry) {
             replaceFragment(InquiryFragment.class.getName(),InquiryFragment.class.getName(),FragmentTabsHome.class.getName(),null);
         } else if (id == R.id.nav_messages) {
-            replaceFragment(ChatTabFragment.class.getName(),ChatTabFragment.class.getName(),FragmentTabsHome.class.getName(),null);
+//            replaceFragment(ChatTabFragment.class.getName(),ChatTabFragment.class.getName(),FragmentTabsHome.class.getName(),null);
 
         }
 
