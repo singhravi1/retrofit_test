@@ -52,7 +52,18 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View feedView = inflater.inflate(R.layout.fragment_feeds, container, false);
-        ButterKnife.bind(this, feedView);
+
+        return feedView;
+    }
+
+    protected void setViewData(){
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mListView.setLayoutManager(layoutManager);
@@ -85,17 +96,6 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
             }
         });
         setViewData();
-        return feedView;
-    }
-
-    protected void setViewData(){
-
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
     }
 
     protected void getData(boolean showProgressBar) {

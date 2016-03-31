@@ -8,16 +8,29 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.arcfix.R;
 import com.arcfix.activity.BaseActivity;
 import com.arcfix.adapter.ChatAdapter;
+
+import butterknife.Bind;
 
 /**
  * Created by deep on 30/03/16.
  */
 public class ChatFragment extends BaseListFragment {
 ChatAdapter mAdapter;
+    @Bind(R.id.edt_chat_message)
+    EditText mEdtChatMessage;
+
+    @Bind(R.id.img_attach_file)
+    ImageButton mImgAttach;
+    @Bind(R.id.img_send)
+    ImageButton mImgSend;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +40,10 @@ ChatAdapter mAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        return super.onCreateView(inflater, container, savedInstanceState);
+           View feedView = inflater.inflate(R.layout.chat_fragment, container, false);
+
+            return feedView;
+
     }
     public void setViewData(){
 

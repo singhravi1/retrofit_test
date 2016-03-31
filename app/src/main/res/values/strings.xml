@@ -44,6 +44,7 @@
     <string name="download">Download</string>
 
     <string name="view">View</string>
+    <string name="send_message">Send a message..</string>
     <string-array name="tab_title">
         <item>@string/news_feed</item>
 
