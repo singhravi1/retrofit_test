@@ -157,6 +157,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     }
 
     void setAdapter() {
+        mProgressBar.setVisibility(View.GONE);
         if(mAdapter==null){
         mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
         }else{
@@ -168,8 +169,9 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         mItemTouchHelper = new ItemTouchHelper(callback);
 
         mItemTouchHelper.attachToRecyclerView(mListView);
-            mListView.setAdapter(mAdapter);
+
         }
+        mListView.setAdapter(mAdapter);
 //        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
 //        SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
 
