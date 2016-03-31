@@ -40,6 +40,10 @@
     <string name="inquiry">Inquiry</string>
 
     <string name="messages">Messages</string>
+
+    <string name="download">Download</string>
+
+    <string name="view">View</string>
     <string-array name="tab_title">
         <item>@string/news_feed</item>
 

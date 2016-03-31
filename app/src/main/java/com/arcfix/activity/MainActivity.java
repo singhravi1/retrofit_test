@@ -2,9 +2,9 @@ package com.arcfix.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
@@ -14,14 +14,12 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.arcfix.R;
 import com.arcfix.fragment.ChatTabFragment;
-import com.arcfix.fragment.FeedsFragment;
 import com.arcfix.fragment.FragmentTabsHome;
 import com.arcfix.fragment.InquiryFragment;
 
@@ -29,7 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.fab)
@@ -46,8 +44,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Action need to be implemented", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(MainActivity.this, ChatActivity.class));
+//                Snackbar.make(view, "Action need to be implemented", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -64,7 +63,9 @@ public class MainActivity extends AppCompatActivity
             replaceFragment(FragmentTabsHome.class.getName(),FragmentTabsHome.class.getName(),null,null);
         }
     }
-void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
+
+
+protected  void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
     if(fName.equalsIgnoreCase(InquiryFragment.class.getName())||fName.equalsIgnoreCase(ChatTabFragment.class.getName())){
         fab.setVisibility(View.GONE);
     }else{

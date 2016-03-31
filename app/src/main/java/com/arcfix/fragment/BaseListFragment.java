@@ -124,7 +124,6 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void setRefresing(boolean refresh) {
         loading = refresh;
         mSwipeRefreshLayout.setRefreshing(refresh);
-
     }
 }
 
