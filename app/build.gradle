@@ -26,11 +26,11 @@ android {
 
     productFlavors {
 
-        develelopment {
+        development {
 
         }
 
-        prodduction {
+        production {
 
         }
     }
