@@ -41,6 +41,8 @@
 
     <string name="messages">Messages</string>
 
+    <string name="youtube">Youtube</string>
+
     <string name="download">Download</string>
 
     <string name="view">View</string>
@@ -61,5 +63,9 @@
         <item>@string/archive_messages</item>
 
     </string-array>
+    <string name="playerview_text">PlayerView</string>
+
+    <string name="android_key">AIzaSyBInlIa8pTcnLeDKIl0PTw6bsZlsnsAFGg</string>
+    <string name="error_player">Error in youtube player</string>
 </resources>
 

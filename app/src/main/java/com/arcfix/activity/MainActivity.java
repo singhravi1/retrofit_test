@@ -123,10 +123,12 @@ protected  void replaceFragment(String fName,String tag,String backstaktag,Bundl
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_inquiry) {
+        if(id==R.id.nav_youtube){
+            startActivity(new Intent(this,PlayerViewActivity.class));
+        }else if (id == R.id.nav_inquiry) {
             replaceFragment(InquiryFragment.class.getName(),InquiryFragment.class.getName(),FragmentTabsHome.class.getName(),null);
         } else if (id == R.id.nav_messages) {
-//            replaceFragment(ChatTabFragment.class.getName(),ChatTabFragment.class.getName(),FragmentTabsHome.class.getName(),null);
+            replaceFragment(ChatTabFragment.class.getName(),ChatTabFragment.class.getName(),FragmentTabsHome.class.getName(),null);
 
         }
 

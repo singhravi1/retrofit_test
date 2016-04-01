@@ -25,6 +25,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".activity.ChatActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".activity.PlayerViewActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

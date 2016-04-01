@@ -23,6 +23,17 @@ android {
             minifyEnabled true
         }
     }
+
+    productFlavors {
+
+        develelopment {
+
+        }
+
+        prodduction {
+
+        }
+    }
 }
 
 dependencies {
@@ -40,5 +51,6 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:2.2.1'
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
 
 }
