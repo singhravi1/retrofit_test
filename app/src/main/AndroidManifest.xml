@@ -8,11 +8,11 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name" android:name=".AppArcfix"
+        android:label="@string/app_name" android:name="com.startxlabs.AppArcfix"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.startxlabs.activity.MainActivity"
             android:label="@string/app_name" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,11 +23,11 @@
         </activity>
         <activity
             android:theme="@style/AppTheme.NoActionBar"
-            android:name=".activity.ChatActivity"
+            android:name="com.startxlabs.activity.ChatActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:theme="@style/AppTheme.NoActionBar"
-            android:name=".activity.PlayerViewActivity"
+            android:name="com.startxlabs.activity.PlayerViewActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 
