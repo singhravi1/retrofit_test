@@ -13,7 +13,7 @@ import com.arcfix.R;
 public class BaseActivity extends AppCompatActivity {
 
 
-   protected void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
+   public void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
 
         Fragment fragment=Fragment.instantiate(this,fName,data);
         FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();

@@ -66,7 +66,7 @@ public class SharedPrefrenceUtils {
     }
 
 
-    public void setIntSharedPref(String key,boolean value){
+    public void setIntSharedPref(String key,int value){
         SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(context);
         preferences.edit().putInt(key,value).commit();
     }
