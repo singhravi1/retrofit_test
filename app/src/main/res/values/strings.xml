@@ -16,10 +16,12 @@
     <string name="loading_1">Loading.</string>
     <string name="loading_2">Loading..</string>
     <string name="loading_3">Loading...</string>
+    <string name="skip">Skip</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-<string name="action_search">Search</string>
+
+    <string name="action_search">Search</string>
     <string name="action_settings">Settings</string>
     <string name="action_cart">Cart</string>
 

@@ -51,6 +51,8 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:2.2.1'
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'me.relex:circleindicator:1.1.8@aar'
     compile files('libs/YouTubeAndroidPlayerApi.jar')
+
 
 }

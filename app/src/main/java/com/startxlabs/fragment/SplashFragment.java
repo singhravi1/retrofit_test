@@ -40,15 +40,15 @@ public class SplashFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHandler=new Handler();
+        mHandler = new Handler();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View v=inflater.inflate(R.layout.fragment_splash,container,false);
-        ButterKnife.bind(this,v);
-        return  v;
+        View v = inflater.inflate(R.layout.fragment_splash, container, false);
+        ButterKnife.bind(this, v);
+        return v;
     }
 
     @Override
@@ -57,14 +57,14 @@ public class SplashFragment extends Fragment {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-if(SharedPrefrenceUtils.getInstance(getActivity()).getBooleanSharedPref(SharedPrefrenceUtils.KEY_IS_LOGGED_IN)){
-    startActivity(new Intent(getActivity(), MainActivity.class));
-}else{
+                if (SharedPrefrenceUtils.getInstance(getActivity()).getBooleanSharedPref(SharedPrefrenceUtils.KEY_IS_LOGGED_IN)) {
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                } else {
 
-    ((BaseActivity)getActivity()).getSupportFragmentManager().popBackStack();
-    ((BaseActivity)getActivity()).replaceFragment(LoginFragment.class.getName(),LoginFragment.class.getName(),null,null);
-}
+                    ((BaseActivity) getActivity()).getSupportFragmentManager().popBackStack();
+                    ((BaseActivity) getActivity()).replaceFragment(LoginFragment.class.getName(), LoginFragment.class.getName(), null, null);
+                }
             }
-        },2000);
+        }, 2000);
     }
 }
