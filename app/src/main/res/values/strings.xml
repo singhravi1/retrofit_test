@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">Arcfix</string>
 <string name="lbl_company_name">Company Name</string>
+
+    <string name="lbl_register_device">Register Device</string>
+
+    <string name="enter_info_below">Enter information below</string>
+    <string name="partner_id">Partner ID</string>
+    <string name="token">Token</string>
+    <string name="sign_in">Sign in</string>
+
+    <string name="request_account">Request Account</string>
+
+    <string name="new_here_signup">New here? Sign Up</string>
+
+    <string name="loading_1">Loading.</string>
+    <string name="loading_2">Loading..</string>
+    <string name="loading_3">Loading...</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 <string name="action_search">Search</string>

@@ -42,7 +42,7 @@ public class SharedPrefrenceUtils {
 
     public long getLongSharedPref(String key){
         SharedPreferences preferences= PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getInt(key,0l);
+        return preferences.getLong(key,0l);
     }
 
 

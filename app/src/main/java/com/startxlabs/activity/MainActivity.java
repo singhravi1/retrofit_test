@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity
     }
 
 
-protected  void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
+public  void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
     if(fName.equalsIgnoreCase(InquiryFragment.class.getName())||fName.equalsIgnoreCase(ChatTabFragment.class.getName())){
         fab.setVisibility(View.GONE);
     }else{
