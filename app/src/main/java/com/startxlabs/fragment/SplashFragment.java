@@ -47,7 +47,7 @@ public class SplashFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View v=inflater.inflate(R.layout.fragment_splash,container,false);
-        ButterKnife.bind(v);
+        ButterKnife.bind(this,v);
         return  v;
     }
 
