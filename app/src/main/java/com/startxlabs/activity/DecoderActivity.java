@@ -2,6 +2,7 @@ package com.startxlabs.activity;
 
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
@@ -47,13 +48,20 @@ ButterKnife.bind(this);
         line_image.setAnimation(mAnimation);
     }
 
-
+int getHeight(){
+    DisplayMetrics displaymetrics = new DisplayMetrics();
+    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+    int height = displaymetrics.heightPixels;
+    int width = displaymetrics.widthPixels;
+    return  height;
+}
     // Called when a QR is decoded
     // "text" : the text encoded in QR
     // "points" : points where QR control points are placed
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
         myTextView.setText(text);//TODO: do action
+        finish();
     }
 
 
@@ -73,6 +81,7 @@ ButterKnife.bind(this);
     protected void onResume() {
         super.onResume();
         mydecoderview.getCameraManager().startPreview();
+        line_image.setPadding(0,getHeight()/4,0,0);
     }
 
     @Override
