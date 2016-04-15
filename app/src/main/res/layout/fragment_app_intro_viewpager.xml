@@ -17,8 +17,8 @@
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator_skip_intro"
         android:layout_width="match_parent"
-        app:ci_width="6dp"
-        app:ci_height="6dp"
+        app:ci_width="8dp"
+        app:ci_height="8dp"
         app:ci_animator="@animator/indicator_no_animator"
         app:ci_drawable="@drawable/primary_color_circle"
         app:ci_drawable_unselected="@drawable/grey_circle"
