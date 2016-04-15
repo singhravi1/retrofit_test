@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.arcfix.R;
 import com.startxlabs.activity.BaseActivity;
+import com.startxlabs.activity.DecoderActivity;
 import com.startxlabs.activity.MainActivity;
 
 import butterknife.Bind;
@@ -24,6 +26,8 @@ import butterknife.OnClick;
 public class LoginFragment extends Fragment {
     @Bind(R.id.btn_sign_in)
     Button mBtnSignin;
+    @Bind(R.id.img_scan_qr_code)
+    ImageView mImgScanQR;
 private Handler mHandler;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ private Handler mHandler;
         return v;
     }
 
-    @OnClick({R.id.btn_sign_in,R.id.txt_request_account})
+    @OnClick({R.id.btn_sign_in,R.id.txt_request_account,R.id.img_scan_qr_code})
     public void onViewClick(View v){
         switch (v.getId()){
             case R.id.btn_sign_in:
@@ -55,6 +59,9 @@ private Handler mHandler;
                         }
                     }
                 },2000);
+                break;
+            case R.id.img_scan_qr_code:
+                startActivity(new Intent(getActivity(), DecoderActivity.class));
                 break;
         }
     }

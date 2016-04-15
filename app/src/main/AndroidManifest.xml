@@ -31,6 +31,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:name="com.startxlabs.activity.LatestNewsActivity"
             android:screenOrientation="portrait"></activity>
+
+
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name="com.startxlabs.activity.DecoderActivity"
+            ></activity>
         <activity
 
             android:theme="@style/AppTheme.NoActionBar"

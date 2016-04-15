@@ -33,18 +33,17 @@ import butterknife.OnClick;
  */
 public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter {
 
+    private static final int TYPE_ITEM = 1;
+    private static final int TYPE_FOOTER = 2;
     private MainResponse data;
     private View.OnClickListener onClick;
     private Context context;
-    private static final int TYPE_ITEM = 1;
-    private static final int TYPE_FOOTER = 2;
-
-
     private OnStartDragListener mDragStartListener;
-private FeedAdapterCallback callback;
-public void setData(MainResponse data){
-    this.data=data;
-}
+    private FeedAdapterCallback callback;
+    private boolean isLoginRemoved=false;
+    private boolean isUpgardeRemoved=false;
+    private boolean isLoadmoreremoved=false;
+
     public FeedListAdapter(Context context, View.OnClickListener onClick, MainResponse data,OnStartDragListener dragStartListener,FeedAdapterCallback callback) {
         this.context = context;
         this.mDragStartListener = dragStartListener;
@@ -52,6 +51,10 @@ public void setData(MainResponse data){
         this.data = data;
         this.callback=callback;
     }
+
+public void setData(MainResponse data){
+    this.data=data;
+}
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -124,7 +127,7 @@ public void setData(MainResponse data){
                 }
             });
         } else if (holder instanceof FooterHolder) {
-//TODO:
+        //TODO:
             ((FooterHolder )holder).cardViewMore.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -138,7 +141,6 @@ public void setData(MainResponse data){
 
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -162,9 +164,7 @@ public void setData(MainResponse data){
         notifyItemMoved(fromPosition, toPosition);
         return false;
     }
-private boolean isLoginRemoved=false;
-    private boolean isUpgardeRemoved=false;
-    private boolean isLoadmoreremoved=false;
+
     @Override
     public void onItemDismiss(int position) {
         if(position<data.getItems().size()) {
