@@ -60,7 +60,6 @@ public class SplashFragment extends Fragment {
                 if (SharedPrefrenceUtils.getInstance(getActivity()).getBooleanSharedPref(SharedPrefrenceUtils.KEY_IS_LOGGED_IN)) {
                     startActivity(new Intent(getActivity(), MainActivity.class));
                 } else {
-
                     ((BaseActivity) getActivity()).getSupportFragmentManager().popBackStack();
                     ((BaseActivity) getActivity()).replaceFragment(LoginFragment.class.getName(), LoginFragment.class.getName(), null, null);
                 }

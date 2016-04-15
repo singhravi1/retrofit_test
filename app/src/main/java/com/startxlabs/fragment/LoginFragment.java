@@ -50,8 +50,8 @@ private Handler mHandler;
                     public void run() {
                         if(getActivity()!=null){
                             ((BaseActivity) getActivity()).enableUserTouch();
-                            getActivity().finish();
-                            startActivity(new Intent(getActivity(),MainActivity.class));
+                            ((BaseActivity) getActivity()).getSupportFragmentManager().popBackStack();
+                            ((BaseActivity) getActivity()).replaceFragment(AppIntroViewPagerFragment.class.getName(), AppIntroViewPagerFragment.class.getName(), null, null);
                         }
                     }
                 },2000);

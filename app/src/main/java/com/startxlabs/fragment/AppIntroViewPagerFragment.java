@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.arcfix.R;
 import com.startxlabs.activity.MainActivity;
+import com.startxlabs.adapter.IntroPagerAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,6 +31,7 @@ public class AppIntroViewPagerFragment extends Fragment {
 
     @Bind(R.id.btn_skip_intro)
     Button btnSkip;
+    private final int ITEM_COUNT = 6;//one extra for swipe
 
     @Nullable
     @Override
@@ -42,11 +44,32 @@ public class AppIntroViewPagerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewPager.setAdapter();
+        mViewPager.setAdapter(new IntroPagerAdapter(getChildFragmentManager(),getActivity(),ITEM_COUNT));
+        mViewPagerIndicator.setViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position >= ITEM_COUNT-1) {
+                    getActivity().finish();
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @OnClick({R.id.btn_skip_intro})
     void onViewClick(View v) {
+        getActivity().finish();
         startActivity(new Intent(getActivity(), MainActivity.class));
     }
 }
