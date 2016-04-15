@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +61,7 @@ public class MainActivity extends BaseActivity
             fab.setVisibility(View.VISIBLE);
             replaceFragment(FragmentTabsHome.class.getName(),FragmentTabsHome.class.getName(),null,null);
         }
+        startActivity(new Intent(this,LatestNewsActivity.class));
     }
 
 
