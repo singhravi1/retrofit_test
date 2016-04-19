@@ -3,30 +3,36 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_inquiry"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/inquiry" />
+            android:id="@+id/nav_favorite"
+            android:icon="@mipmap/ic_star_black_24dp"
+            android:title="@string/favorites" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/ic_bookmark_black_24dp"
+            android:title="@string/home" />
         <item
             android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/ic_forum_black_24dp"
             android:title="@string/messages" />
+
+        <item
+            android:id="@+id/nav_inquiry"
+            android:icon="@mipmap/ic_forum_black_24dp"
+            android:title="@string/inquiry" />
         <item
             android:id="@+id/nav_youtube"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/ic_forum_black_24dp"
             android:title="@string/youtube" />
     </group>
+    <item
+        android:id="@+id/nav_products"
+        android:icon="@mipmap/ic_local_offer_black_24dp"
+        android:title="@string/products">
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
     </item>
+    <item
+        android:id="@+id/nav_support"
+        android:icon="@mipmap/ic_settings_black_24dp"
+        android:title="@string/support" />
 
 </menu>

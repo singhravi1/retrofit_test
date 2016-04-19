@@ -27,11 +27,13 @@
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
         <item name="tabSelectedTextColor">@color/dark_orange</item>
     </style>
+
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
     </style>
+
     <style name="text_heading_20dp" parent="TextAppearance.FontPath">
         <item name="android:textColor">@color/text_bold_large</item>
 

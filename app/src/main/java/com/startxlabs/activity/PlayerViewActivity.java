@@ -26,31 +26,31 @@ import com.google.android.youtube.player.YouTubePlayerView;
 /**
  * A simple YouTube Android API demo application which shows how to create a simple application that
  * displays a YouTube Video in a {@link YouTubePlayerView}.
- * <p>
+ * <p/>
  * Note, to use a {@link YouTubePlayerView}, your activity must extend {@link YouTubeBaseActivity}.
  */
-public class PlayerViewActivity extends  YouTubeFailureRecoveryActivity {
+public class PlayerViewActivity extends YouTubeFailureRecoveryActivity {
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.playerview_youtube);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.playerview_youtube);
 
-    YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-    youTubeView.initialize(getString(R.string.android_key), this);
-  }
-
-  @Override
-  public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player,
-      boolean wasRestored) {
-    if (!wasRestored) {
-      player.cueVideo("0Z5MZ0jL2BM");
+        YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView.initialize(getString(R.string.android_key), this);
     }
-  }
 
-  @Override
-  protected YouTubePlayer.Provider getYouTubePlayerProvider() {
-    return (YouTubePlayerView) findViewById(R.id.youtube_view);
-  }
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player,
+                                        boolean wasRestored) {
+        if (!wasRestored) {
+            player.cueVideo("0Z5MZ0jL2BM");
+        }
+    }
+
+    @Override
+    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+        return (YouTubePlayerView) findViewById(R.id.youtube_view);
+    }
 
 }

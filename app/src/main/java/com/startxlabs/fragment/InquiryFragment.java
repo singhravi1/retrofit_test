@@ -30,25 +30,27 @@ public class InquiryFragment extends Fragment {
 
     @Bind(R.id.btn_submit_inquiry)
     Button mBtnSubmit;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_inquiry_form,container,false);
+        return inflater.inflate(R.layout.fragment_inquiry_form, container, false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getString(R.string.inquiry));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.inquiry));
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
     }
+
     @OnClick({R.id.btn_submit_inquiry})
-    void onClickView(View view){
+    void onClickView(View view) {
         getActivity().getSupportFragmentManager().popBackStack();
     }
 }

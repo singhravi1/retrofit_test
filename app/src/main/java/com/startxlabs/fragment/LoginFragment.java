@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import com.arcfix.R;
 import com.startxlabs.activity.BaseActivity;
 import com.startxlabs.activity.DecoderActivity;
-import com.startxlabs.activity.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,37 +27,38 @@ public class LoginFragment extends Fragment {
     Button mBtnSignin;
     @Bind(R.id.img_scan_qr_code)
     ImageView mImgScanQR;
-private Handler mHandler;
+    private Handler mHandler;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHandler=new Handler();
+        mHandler = new Handler();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_login,container,false);
-        ButterKnife.bind(this,v);
+        View v = inflater.inflate(R.layout.fragment_login, container, false);
+        ButterKnife.bind(this, v);
         return v;
     }
 
-    @OnClick({R.id.btn_sign_in,R.id.txt_request_account,R.id.img_scan_qr_code})
-    public void onViewClick(View v){
-        switch (v.getId()){
+    @OnClick({R.id.btn_sign_in, R.id.txt_request_account, R.id.img_scan_qr_code})
+    public void onViewClick(View v) {
+        switch (v.getId()) {
             case R.id.btn_sign_in:
                 mBtnSignin.setText(getString(R.string.loading_3));
                 ((BaseActivity) getActivity()).disableUserTouch();
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(getActivity()!=null){
+                        if (getActivity() != null) {
                             ((BaseActivity) getActivity()).enableUserTouch();
                             ((BaseActivity) getActivity()).getSupportFragmentManager().popBackStack();
                             ((BaseActivity) getActivity()).replaceFragment(AppIntroViewPagerFragment.class.getName(), AppIntroViewPagerFragment.class.getName(), null, null);
                         }
                     }
-                },2000);
+                }, 2000);
                 break;
             case R.id.img_scan_qr_code:
                 startActivity(new Intent(getActivity(), DecoderActivity.class));

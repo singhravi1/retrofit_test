@@ -1,7 +1,6 @@
 package com.startxlabs.adapter;
 
 import android.content.Context;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.arcfix.R;
+import com.squareup.picasso.Picasso;
 import com.startxlabs.rest_api.data_model.MainResponse;
 import com.startxlabs.ui_utils.CircleTransform;
-import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,19 +20,20 @@ import butterknife.OnClick;
 /**
  * Created by deep on 30/03/16.
  */
-public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final int TYPE_ITEM = 1;
     private MainResponse data;
     private View.OnClickListener onClick;
     private Context context;
-    private static final int TYPE_ITEM = 1;
 
-    public void setData(MainResponse data){
-        this.data=data;
-    }
     public ChatAdapter(Context context, View.OnClickListener onClick, MainResponse data) {
         this.context = context;
         this.onClick = onClick;
+        this.data = data;
+    }
+
+    public void setData(MainResponse data) {
         this.data = data;
     }
 
@@ -71,24 +71,22 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     }
 
 
-    public class RowHolder extends RecyclerView.ViewHolder  {
+    public class RowHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.chat_sender_msg)
         FrameLayout chatListRowSender;
 
-@Bind(R.id.chat_user_image)
-ImageView imgChatUserLogo;
+        @Bind(R.id.chat_user_image)
+        ImageView imgChatUserLogo;
 
         public RowHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick({ R.id.chat_sender_msg})
+        @OnClick({R.id.chat_sender_msg})
         void onViewClick(View view) {
             switch (view.getId()) {
-
-
 
 
             }

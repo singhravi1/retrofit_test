@@ -63,7 +63,6 @@ public class LatestNewsActivity extends BaseActivity {
     CardView cardUpdateView;
 
 
-
     @Bind(R.id.lnr_dismiss_update)
     LinearLayout lnrDismissUpdate;
 
@@ -72,6 +71,7 @@ public class LatestNewsActivity extends BaseActivity {
 
     @Bind(R.id.img_view_more)
     ImageView mImgDetails;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +84,9 @@ public class LatestNewsActivity extends BaseActivity {
         Picasso.with(this).load(R.mipmap.dummy).into(imgBig);
     }
 
-    @OnClick({R.id.img_view_more,R.id.lnr_favorite,R.id.lnr_share})
-    void onViewClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.img_view_more, R.id.lnr_favorite, R.id.lnr_share})
+    void onViewClick(View view) {
+        switch (view.getId()) {
             case R.id.img_view_more:
                 finish();
                 break;

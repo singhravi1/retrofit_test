@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_archive"
-        android:orderInCategory="1" android:icon="@mipmap/ic_unarchive_white_24dp"
+        android:icon="@mipmap/ic_unarchive_white_24dp"
+        android:orderInCategory="1"
         android:title="@string/archive"
         app:showAsAction="always" />
 </menu>

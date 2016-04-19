@@ -1,4 +1,3 @@
-
 package com.startxlabs.rest_api.data_model;
 
 import com.google.gson.annotations.Expose;
@@ -53,199 +52,156 @@ public class Item {
     public void set_Id(String _Id) {
         this.id = _Id;
     }
+
     /**
-     * 
-     * @return
-     *     The Id
+     * @return The Id
      */
     public String getId() {
         return _Id;
     }
 
     /**
-     * 
-     * @param Id
-     *     The _id
+     * @param Id The _id
      */
     public void setId(String Id) {
         this._Id = Id;
     }
 
     /**
-     * 
-     * @return
-     *     The type
+     * @return The type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * 
-     * @param type
-     *     The type
+     * @param type The type
      */
     public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * 
-     * @return
-     *     The organization
+     * @return The organization
      */
     public String getOrganization() {
         return organization;
     }
 
     /**
-     * 
-     * @param organization
-     *     The organization
+     * @param organization The organization
      */
     public void setOrganization(String organization) {
         this.organization = organization;
     }
 
     /**
-     * 
-     * @return
-     *     The residue
+     * @return The residue
      */
     public String getResidue() {
         return residue;
     }
 
     /**
-     * 
-     * @param residue
-     *     The residue
+     * @param residue The residue
      */
     public void setResidue(String residue) {
         this.residue = residue;
     }
 
     /**
-     * 
-     * @return
-     *     The icon
+     * @return The icon
      */
     public String getIcon() {
         return icon;
     }
 
     /**
-     * 
-     * @param icon
-     *     The icon
+     * @param icon The icon
      */
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
     /**
-     * 
-     * @return
-     *     The date
+     * @return The date
      */
     public String getDate() {
         return date;
     }
 
     /**
-     * 
-     * @param date
-     *     The date
+     * @param date The date
      */
     public void setDate(String date) {
         this.date = date;
     }
 
     /**
-     * 
-     * @return
-     *     The format
+     * @return The format
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * 
-     * @param format
-     *     The format
+     * @param format The format
      */
     public void setFormat(String format) {
         this.format = format;
     }
 
     /**
-     * 
-     * @return
-     *     The active
+     * @return The active
      */
     public Boolean getActive() {
         return active;
     }
 
     /**
-     * 
-     * @param active
-     *     The active
+     * @param active The active
      */
     public void setActive(Boolean active) {
         this.active = active;
     }
 
     /**
-     * 
-     * @return
-     *     The story
+     * @return The story
      */
     public Story getStory() {
         return story;
     }
 
     /**
-     * 
-     * @param story
-     *     The story
+     * @param story The story
      */
     public void setStory(Story story) {
         this.story = story;
     }
 
     /**
-     * 
-     * @return
-     *     The dismissable
+     * @return The dismissable
      */
     public Boolean getDismissable() {
         return dismissable;
     }
 
     /**
-     * 
-     * @param dismissable
-     *     The dismissable
+     * @param dismissable The dismissable
      */
     public void setDismissable(Boolean dismissable) {
         this.dismissable = dismissable;
     }
 
     /**
-     * 
-     * @return
-     *     The basic
+     * @return The basic
      */
     public Basic getBasic() {
         return basic;
     }
 
     /**
-     * 
-     * @param basic
-     *     The basic
+     * @param basic The basic
      */
     public void setBasic(Basic basic) {
         this.basic = basic;

@@ -7,7 +7,10 @@ import com.startxlabs.rest_api.data_model.Item;
  */
 public interface FeedAdapterCallback {
     void onLoadMore();
+
     void onItemRemove(int position, Item object);
+
     void onUndoAction(int position, Item object);
-    void onDragDrop(int positionOne,int positiontwo);
+
+    void onDragDrop(int positionOne, int positiontwo);
 }

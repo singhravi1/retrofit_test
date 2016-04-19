@@ -49,7 +49,54 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     private ItemTouchHelper mItemTouchHelper;
     private int visibleItemCount, totalItemCount, firstVisibleItem, previousTotal = 0, visibleThreshold = 1, current_page = 0;
 
-    private boolean loading=true;
+    private boolean loading = true;
+    private View.OnClickListener onClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+    FeedAdapterCallback callback = new FeedAdapterCallback() {
+        @Override
+        public void onLoadMore() {
+            current_page++;
+            loading = true;
+            getData(false);
+
+        }
+
+        @Override
+        public void onItemRemove(int position, Item object) {
+            loading = true;
+            lastRemoved = position;
+            mItemRemoved = object;
+            Snackbar snackbar = Snackbar.make(
+                    getView(),
+                    R.string.item_removed,
+                    Snackbar.LENGTH_LONG);
+
+            snackbar.setAction(R.string.undo, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onUndoAction(lastRemoved, mItemRemoved);
+                }
+            });
+            snackbar.setActionTextColor(ContextCompat.getColor(getActivity(), R.color.grey));
+            snackbar.show();
+            loading = false;
+        }
+
+        @Override
+        public void onUndoAction(int position, Item object) {
+            data.getItems().add(lastRemoved, mItemRemoved);
+            mAdapter.notifyItemInserted(lastRemoved);
+        }
+
+        @Override
+        public void onDragDrop(int positionOne, int positiontwo) {
+
+        }
+    };
 
     @Nullable
     @Override
@@ -95,7 +142,6 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         return feedView;
     }
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -116,21 +162,21 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                 mProgressBar.setVisibility(View.GONE);
                 if (response != null && response.body() != null) {
 
-                    if(data==null){
+                    if (data == null) {
                         data = response.body();
-                    Item itemLogin = new Item();
-                    Basic basicLogin = new Basic();
-                    basicLogin.setTitle("Login");
-                    itemLogin.setBasic(basicLogin);
-                    data.getItems().add(itemLogin);
+                        Item itemLogin = new Item();
+                        Basic basicLogin = new Basic();
+                        basicLogin.setTitle("Login");
+                        itemLogin.setBasic(basicLogin);
+                        data.getItems().add(itemLogin);
 
-                    Item item = new Item();
-                    Basic basic = new Basic();
-                    basic.setTitle("Upgrade");
-                    item.setBasic(basic);
-                    data.getItems().add(item);
+                        Item item = new Item();
+                        Basic basic = new Basic();
+                        basic.setTitle("Upgrade");
+                        item.setBasic(basic);
+                        data.getItems().add(item);
 
-                    }else{
+                    } else {
                         data.getItems().addAll(response.body().getItems());
                     }
                     setAdapter();
@@ -157,17 +203,17 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
 
     void setAdapter() {
         mProgressBar.setVisibility(View.GONE);
-        if(mAdapter==null){
-        mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
-        }else{
+        if (mAdapter == null) {
+            mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
+        } else {
             mAdapter.setData(data);
             mAdapter.notifyDataSetChanged();
         }
-        if(mItemTouchHelper==null){
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
+        if (mItemTouchHelper == null) {
+            ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
+            mItemTouchHelper = new ItemTouchHelper(callback);
 
-        mItemTouchHelper.attachToRecyclerView(mListView);
+            mItemTouchHelper.attachToRecyclerView(mListView);
 
         }
         mListView.setAdapter(mAdapter);
@@ -176,14 +222,6 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
 
 
     }
-
-    private View.OnClickListener onClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
-
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
@@ -201,48 +239,6 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         mSwipeRefreshLayout.setRefreshing(refresh);
 
     }
-
-    FeedAdapterCallback callback = new FeedAdapterCallback() {
-        @Override
-        public void onLoadMore() {
-            current_page++;
-            loading = true;
-            getData(false);
-
-        }
-
-        @Override
-        public void onItemRemove(int position, Item object) {
-            loading = true;
-            lastRemoved = position;
-            mItemRemoved = object;
-            Snackbar snackbar = Snackbar.make(
-                    getView(),
-                    R.string.item_removed,
-                    Snackbar.LENGTH_LONG);
-
-            snackbar.setAction(R.string.undo, new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onUndoAction(lastRemoved, mItemRemoved);
-                }
-            });
-            snackbar.setActionTextColor(ContextCompat.getColor(getActivity(), R.color.grey));
-            snackbar.show();
-            loading = false;
-        }
-
-        @Override
-        public void onUndoAction(int position, Item object) {
-            data.getItems().add(lastRemoved, mItemRemoved);
-            mAdapter.notifyItemInserted(lastRemoved);
-        }
-
-        @Override
-        public void onDragDrop(int positionOne, int positiontwo) {
-
-        }
-    };
 }
 
 

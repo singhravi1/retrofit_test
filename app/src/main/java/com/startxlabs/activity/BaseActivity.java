@@ -14,11 +14,11 @@ import com.arcfix.R;
 public class BaseActivity extends AppCompatActivity {
 
 
-   public void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
+    public void replaceFragment(String fName, String tag, String backstaktag, Bundle data) {
 
-        Fragment fragment=Fragment.instantiate(this,fName,data);
-        FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_main,fragment,tag);
+        Fragment fragment = Fragment.instantiate(this, fName, data);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, fragment, tag);
         transaction.addToBackStack(backstaktag);
         transaction.commit();
     }
@@ -28,20 +28,21 @@ public class BaseActivity extends AppCompatActivity {
         onBackPress();
     }
 
-    public  void onBackPress(){
-        if(getSupportFragmentManager().getBackStackEntryCount()>1){
+    public void onBackPress() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             getSupportFragmentManager().popBackStack();
-        }else{
+        } else {
             finish();
         }
 
     }
 
-    public void disableUserTouch(){
+    public void disableUserTouch() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
-    public void enableUserTouch(){
+
+    public void enableUserTouch() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

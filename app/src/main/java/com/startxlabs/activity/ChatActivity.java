@@ -16,6 +16,7 @@ public class ChatActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,8 @@ public class ChatActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if(savedInstanceState==null){
-        replaceFragment(ChatFragment.class.getName(),ChatFragment.class.getName(),null,null);
+        if (savedInstanceState == null) {
+            replaceFragment(ChatFragment.class.getName(), ChatFragment.class.getName(), null, null);
         }
     }
 }

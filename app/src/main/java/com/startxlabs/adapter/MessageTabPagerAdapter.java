@@ -14,7 +14,7 @@ import com.startxlabs.fragment.ChatListFragment;
  */
 public class MessageTabPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 2;
-    private String tabTitles[] ;
+    private String tabTitles[];
     private Context context;
 
     public MessageTabPagerAdapter(FragmentManager fm, Context context) {
@@ -30,9 +30,9 @@ public class MessageTabPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Bundle b=new Bundle();
-        b.putInt("position",position);
-        return ChatListFragment.instantiate(context,ChatListFragment.class.getName(),b);
+        Bundle b = new Bundle();
+        b.putInt("position", position);
+        return ChatListFragment.instantiate(context, ChatListFragment.class.getName(), b);
     }
 
     @Override

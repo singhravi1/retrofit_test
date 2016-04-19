@@ -13,14 +13,20 @@ import com.startxlabs.ui_utils.DividerItemDecoration;
  */
 public class ChatListFragment extends BaseChatListFragment {
     int fragmentPos;
-private ChatListAdapter mAdapter;
+    private ChatListAdapter mAdapter;
+    private View.OnClickListener onClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       if( getArguments()!=null){
-           fragmentPos=getArguments().getInt("position");
-       }
+        if (getArguments() != null) {
+            fragmentPos = getArguments().getInt("position");
+        }
     }
 
     @Override
@@ -42,15 +48,8 @@ private ChatListAdapter mAdapter;
     protected void setAdapter() {
         super.setAdapter();
         mProgressBar.setVisibility(View.GONE);
-        mAdapter=new ChatListAdapter(getActivity(),onClick,null);
+        mAdapter = new ChatListAdapter(getActivity(), onClick, null);
         mListView.setAdapter(mAdapter);
     }
-
-    private View.OnClickListener onClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
 }
 

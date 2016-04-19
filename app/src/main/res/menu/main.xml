@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:appcompat="http://schemas.android.com/tools">
-    <item android:id="@+id/action_search"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:actionViewClass="android.widget.SearchView"
         android:title="@string/action_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always"
-        android:actionViewClass="android.widget.SearchView" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_cart"
-        android:orderInCategory="1" android:icon="@mipmap/ic_local_grocery_store_white_24dp"
+        android:icon="@mipmap/ic_local_grocery_store_white_24dp"
+        android:orderInCategory="1"
         android:title="@string/action_cart"
         app:showAsAction="ifRoom" />
 </menu>

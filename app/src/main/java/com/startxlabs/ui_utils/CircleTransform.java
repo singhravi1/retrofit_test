@@ -3,6 +3,7 @@ package com.startxlabs.ui_utils;
 /**
  * Created by deep on 30/03/16.
  */
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;

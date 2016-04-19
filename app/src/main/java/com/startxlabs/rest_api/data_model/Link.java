@@ -1,4 +1,3 @@
-
 package com.startxlabs.rest_api.data_model;
 
 
@@ -17,59 +16,47 @@ public class Link {
     @Expose
     private String dest;
 
-     @SerializedName("type")
+    @SerializedName("type")
     @Expose
     private String type;
 
     /**
-     * 
-     * @return
-     *     The id
+     * @return The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * 
-     * @return
-     *     The title
+     * @return The title
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * 
-     * @param title
-     *     The title
+     * @param title The title
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * 
-     * @return
-     *     The dest
+     * @return The dest
      */
     public String getDest() {
         return dest;
     }
 
     /**
-     * 
-     * @param dest
-     *     The dest
+     * @param dest The dest
      */
     public void setDest(String dest) {
         this.dest = dest;

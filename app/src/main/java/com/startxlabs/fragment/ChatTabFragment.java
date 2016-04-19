@@ -36,19 +36,19 @@ public class ChatTabFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getString(R.string.messages));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.messages));
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home_tab_layout,container,false);
+        return inflater.inflate(R.layout.fragment_home_tab_layout, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         mViewPager.setAdapter(new MessageTabPagerAdapter(getChildFragmentManager(),
                 getActivity()));
         mTabLayout.setupWithViewPager(mViewPager);

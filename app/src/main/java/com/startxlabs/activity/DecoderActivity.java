@@ -19,17 +19,18 @@ import butterknife.ButterKnife;
  * Created by deep on 15/04/16.
  */
 public class DecoderActivity extends BaseActivity implements QRCodeReaderView.OnQRCodeReadListener {
-@Bind(R.id.qr_result_textview)
-     TextView myTextView;
+    @Bind(R.id.qr_result_textview)
+    TextView myTextView;
     @Bind(R.id.qrdecoderview)
-     QRCodeReaderView mydecoderview;
+    QRCodeReaderView mydecoderview;
     @Bind(R.id.red_line_image)
     ImageView line_image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_decode);
-ButterKnife.bind(this);
+        ButterKnife.bind(this);
         mydecoderview = (QRCodeReaderView) findViewById(R.id.qrdecoderview);
         mydecoderview.setOnQRCodeReadListener(this);
 
@@ -48,14 +49,14 @@ ButterKnife.bind(this);
         line_image.setAnimation(mAnimation);
     }
 
-int getHeight(){
-    DisplayMetrics displaymetrics = new DisplayMetrics();
-    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-    int height = displaymetrics.heightPixels;
-    int width = displaymetrics.widthPixels;
-    return  height;
-}
-    // Called when a QR is decoded
+    int getHeight() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+        return height;
+    }
+
     // "text" : the text encoded in QR
     // "points" : points where QR control points are placed
     @Override
@@ -81,7 +82,7 @@ int getHeight(){
     protected void onResume() {
         super.onResume();
         mydecoderview.getCameraManager().startPreview();
-        line_image.setPadding(0,getHeight()/4,0,0);
+        line_image.setPadding(0, getHeight() / 4, 0, 0);
     }
 
     @Override

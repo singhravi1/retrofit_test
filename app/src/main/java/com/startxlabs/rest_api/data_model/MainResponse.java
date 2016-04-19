@@ -1,4 +1,3 @@
-
 package com.startxlabs.rest_api.data_model;
 
 import com.google.gson.annotations.Expose;
@@ -14,18 +13,14 @@ public class MainResponse {
     private List<Item> items = new ArrayList<Item>();
 
     /**
-     * 
-     * @return
-     *     The items
+     * @return The items
      */
     public List<Item> getItems() {
         return items;
     }
 
     /**
-     * 
-     * @param items
-     *     The items
+     * @param items The items
      */
     public void setItems(List<Item> items) {
         this.items = items;

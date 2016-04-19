@@ -13,7 +13,7 @@ import com.startxlabs.fragment.FeedsFragment;
  */
 public class HomeTabPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    private String tabTitles[] ;
+    private String tabTitles[];
     private Context context;
 
     public HomeTabPagerAdapter(FragmentManager fm, Context context) {
@@ -29,7 +29,7 @@ public class HomeTabPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return FeedsFragment.instantiate(context,FeedsFragment.class.getName());
+        return FeedsFragment.instantiate(context, FeedsFragment.class.getName());
     }
 
     @Override

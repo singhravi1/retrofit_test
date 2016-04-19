@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Arcfix</string>
-<string name="lbl_company_name">Company Name</string>
+    <string name="lbl_company_name">Company Name</string>
 
     <string name="lbl_register_device">Register Device</string>
 
@@ -33,7 +33,7 @@
     <string name="login">Login</string>
     <string name="update_app">Update your app?</string>
     <string name="update_message">Morbi auctor, sapeorns ac mollis luctus, orcinulim leo lobortis sapien, a rhoncus magna eution ullamco aliquip ex...</string>
-<string name="yes">Yes</string>
+    <string name="yes">Yes</string>
     <string name="load_more">Load More News</string>
     <string name="undo">Undo</string>
     <string name="item_removed">Item has been removed</string>
@@ -57,9 +57,13 @@
 
     <string name="archive">Archive</string>
     <string name="inquiry">Inquiry</string>
+    <string name="favourite">Favorites</string>
 
+    <string name="home">Home</string>
     <string name="messages">Messages</string>
+    <string name="products">Products</string>
 
+    <string name="support">Support</string>
     <string name="youtube">Youtube</string>
 
     <string name="download">Download</string>
@@ -76,6 +80,10 @@
 
     <string name="all_messages">All Messages</string>
     <string name="archive_messages">Archived Messages</string>
+    <string name="back">Back</string>
+    <string name="forward">Forward</string>
+    <string name="reload">Reload</string>
+    <string name="bookmark">Bookmark</string>
     <string-array name="message_tab_title">
         <item>@string/all_messages</item>
 

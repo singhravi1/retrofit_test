@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@color/form_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/form_bg"
     android:orientation="vertical">
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/feed_list"
-        android:layout_width="match_parent"  app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_height="wrap_content"
 
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:listSelector="@android:color/transparent">
-    </android.support.v7.widget.RecyclerView>
-</android.support.v4.widget.SwipeRefreshLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/feed_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+
+            android:dividerHeight="0dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:listSelector="@android:color/transparent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyleInverse"

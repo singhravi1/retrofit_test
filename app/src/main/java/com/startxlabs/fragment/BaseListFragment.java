@@ -22,7 +22,7 @@ import jp.wasabeef.recyclerview.animators.FadeInAnimator;
  */
 public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     @Bind(R.id.feed_list)
-   public RecyclerView mListView;
+    public RecyclerView mListView;
     @Bind(R.id.progress_bar)
     public ProgressBar mProgressBar;
     @Bind(R.id.swiperefresh)
@@ -30,7 +30,7 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     protected int visibleItemCount, totalItemCount, firstVisibleItem, previousTotal = 0, visibleThreshold = 1, current_page = 0;
 
-    protected boolean loading=true;
+    protected boolean loading = true;
 
     @Nullable
     @Override
@@ -40,7 +40,7 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
         return feedView;
     }
 
-    protected void setViewData(){
+    protected void setViewData() {
 
     }
 
@@ -94,9 +94,6 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
 
 
     }
-
-
-
 
 
     @Override

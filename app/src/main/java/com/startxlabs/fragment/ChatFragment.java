@@ -21,7 +21,7 @@ import butterknife.Bind;
  * Created by deep on 30/03/16.
  */
 public class ChatFragment extends BaseListFragment {
-ChatAdapter mAdapter;
+    ChatAdapter mAdapter;
     @Bind(R.id.edt_chat_message)
     EditText mEdtChatMessage;
 
@@ -29,6 +29,7 @@ ChatAdapter mAdapter;
     ImageButton mImgAttach;
     @Bind(R.id.img_send)
     ImageButton mImgSend;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +39,13 @@ ChatAdapter mAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-           View feedView = inflater.inflate(R.layout.chat_fragment, container, false);
+        View feedView = inflater.inflate(R.layout.chat_fragment, container, false);
 
-            return feedView;
+        return feedView;
 
     }
-    public void setViewData(){
+
+    public void setViewData() {
 
         mProgressBar.setVisibility(View.GONE);
         setAdapter();
@@ -51,7 +53,7 @@ ChatAdapter mAdapter;
 
     @Override
     protected void setAdapter() {
-        mAdapter=new ChatAdapter(getActivity(),null,null);
+        mAdapter = new ChatAdapter(getActivity(), null, null);
         mListView.setAdapter(mAdapter);
     }
 
@@ -71,7 +73,7 @@ ChatAdapter mAdapter;
         if (item.getItemId() == android.R.id.home) {
             ((BaseActivity) getActivity()).onBackPress();
         } else if (item.getItemId() == R.id.action_archive) {
-        //TODO:
+            //TODO:
         }
         return super.onOptionsItemSelected(item);
 

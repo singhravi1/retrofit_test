@@ -24,14 +24,13 @@ import me.relex.circleindicator.CircleIndicator;
  */
 public class AppIntroViewPagerFragment extends Fragment {
 
+    private final int ITEM_COUNT = 6;//one extra for swipe
     @Bind(R.id.viewpager_tutorial)
     ViewPager mViewPager;
     @Bind(R.id.indicator_skip_intro)
     CircleIndicator mViewPagerIndicator;
-
     @Bind(R.id.btn_skip_intro)
     Button btnSkip;
-    private final int ITEM_COUNT = 6;//one extra for swipe
 
     @Nullable
     @Override
@@ -44,12 +43,12 @@ public class AppIntroViewPagerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewPager.setAdapter(new IntroPagerAdapter(getChildFragmentManager(),getActivity(),ITEM_COUNT));
+        mViewPager.setAdapter(new IntroPagerAdapter(getChildFragmentManager(), getActivity(), ITEM_COUNT));
         mViewPagerIndicator.setViewPager(mViewPager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position >= ITEM_COUNT-1) {
+                if (position >= ITEM_COUNT - 1) {
                     getActivity().finish();
                     startActivity(new Intent(getActivity(), MainActivity.class));
                 }

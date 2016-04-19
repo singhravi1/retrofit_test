@@ -5,20 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.SearchView;
-import android.view.MenuInflater;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.arcfix.R;
+import com.startxlabs.fragment.AppBrowserFragment;
 import com.startxlabs.fragment.ChatTabFragment;
 import com.startxlabs.fragment.FragmentTabsHome;
 import com.startxlabs.fragment.InquiryFragment;
@@ -32,6 +33,7 @@ public class MainActivity extends BaseActivity
 
     @Bind(R.id.fab)
     FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,26 +59,27 @@ public class MainActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        if(savedInstanceState==null){
+        if (savedInstanceState == null) {
             fab.setVisibility(View.VISIBLE);
-            replaceFragment(FragmentTabsHome.class.getName(),FragmentTabsHome.class.getName(),null,null);
+            replaceFragment(FragmentTabsHome.class.getName(), FragmentTabsHome.class.getName(), null, null);
         }
-        startActivity(new Intent(this,LatestNewsActivity.class));
+        startActivity(new Intent(this, LatestNewsActivity.class));
     }
 
 
-public  void replaceFragment(String fName,String tag,String backstaktag,Bundle data){
-    if(fName.equalsIgnoreCase(InquiryFragment.class.getName())||fName.equalsIgnoreCase(ChatTabFragment.class.getName())){
-        fab.setVisibility(View.GONE);
-    }else{
-        fab.setVisibility(View.VISIBLE);
+    public void replaceFragment(String fName, String tag, String backstaktag, Bundle data) {
+        if (fName.equalsIgnoreCase(InquiryFragment.class.getName()) || fName.equalsIgnoreCase(ChatTabFragment.class.getName())||fName.equalsIgnoreCase(AppBrowserFragment.class.getName())) {
+            fab.setVisibility(View.GONE);
+        } else {
+            fab.setVisibility(View.VISIBLE);
+        }
+        Fragment fragment = Fragment.instantiate(this, fName, data);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, fragment, tag);
+        transaction.addToBackStack(backstaktag);
+        transaction.commit();
     }
-    Fragment fragment=Fragment.instantiate(this,fName,data);
-    FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
-    transaction.replace(R.id.content_main,fragment,tag);
-    transaction.addToBackStack(backstaktag);
-    transaction.commit();
-}
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -123,12 +126,17 @@ public  void replaceFragment(String fName,String tag,String backstaktag,Bundle d
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id==R.id.nav_youtube){
-            startActivity(new Intent(this,PlayerViewActivity.class));
-        }else if (id == R.id.nav_inquiry) {
-            replaceFragment(InquiryFragment.class.getName(),InquiryFragment.class.getName(),FragmentTabsHome.class.getName(),null);
+        if (id == R.id.nav_youtube) {
+            startActivity(new Intent(this, PlayerViewActivity.class));
+        } else if (id == R.id.nav_inquiry) {
+            replaceFragment(InquiryFragment.class.getName(), InquiryFragment.class.getName(), FragmentTabsHome.class.getName(), null);
+        } else if (id == R.id.nav_home) {
+            replaceFragment(FragmentTabsHome.class.getName(), FragmentTabsHome.class.getName(), null, null);
         } else if (id == R.id.nav_messages) {
-            replaceFragment(ChatTabFragment.class.getName(),ChatTabFragment.class.getName(),FragmentTabsHome.class.getName(),null);
+            replaceFragment(ChatTabFragment.class.getName(), ChatTabFragment.class.getName(), FragmentTabsHome.class.getName(), null);
+
+        }else if (id == R.id.nav_support) {
+            replaceFragment(AppBrowserFragment.class.getName(), AppBrowserFragment.class.getName(), FragmentTabsHome.class.getName(), null);
 
         }
 
@@ -136,6 +144,7 @@ public  void replaceFragment(String fName,String tag,String backstaktag,Bundle d
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

@@ -14,16 +14,18 @@ import com.startxlabs.fragment.IntroductionFragment;
 public class IntroPagerAdapter extends FragmentStatePagerAdapter {
     private Context context;
     private int itemCount;
-    public IntroPagerAdapter(FragmentManager fm,Context context, int itemCount){
+
+    public IntroPagerAdapter(FragmentManager fm, Context context, int itemCount) {
         super(fm);
-        this.context=context;
-        this.itemCount=itemCount;
+        this.context = context;
+        this.itemCount = itemCount;
     }
+
     @Override
     public Fragment getItem(int position) {
-        Bundle b=new Bundle();
-        b.putInt("position",position);
-        return IntroductionFragment.instantiate(context,IntroductionFragment.class.getName(),b);
+        Bundle b = new Bundle();
+        b.putInt("position", position);
+        return IntroductionFragment.instantiate(context, IntroductionFragment.class.getName(), b);
     }
 
     @Override
