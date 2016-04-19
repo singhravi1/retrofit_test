@@ -23,31 +23,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="wrap_content"  android:background="@drawable/left"
                 android:orientation="vertical">
-
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/card_chat_txt_container_sender"
-                    style="@style/card_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    card_view:cardCornerRadius="1dp"
-                    tools:ignore="MissingPrefix">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/white"
+
+
                         android:orientation="vertical"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                       >
 
                         <LinearLayout
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -81,18 +68,9 @@
                             android:layout_marginTop="10dp"
                             android:text="Consectetur adipising elit do sed?" />
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/card_chat_image_download_views"
-                    style="@style/card_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    card_view:cardCornerRadius="1dp"
-                    tools:ignore="MissingPrefix">
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -176,7 +154,6 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
@@ -196,29 +173,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="wrap_content"   android:background="@drawable/right"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/card_chat_txt_container_receiver"
-                    style="@style/card_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    card_view:cardCornerRadius="1dp"
-                    tools:ignore="MissingPrefix">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/white"
+
                         android:orientation="vertical"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -254,18 +219,8 @@
                             android:layout_marginTop="10dp"
                             android:text="Consectetur adipising elit do sed?" />
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/card_chat_image_download_views_receiver"
-                    style="@style/card_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    card_view:cardCornerRadius="1dp"
-                    tools:ignore="MissingPrefix">
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -349,7 +304,7 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
+
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
