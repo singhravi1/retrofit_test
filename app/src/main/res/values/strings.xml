@@ -17,7 +17,12 @@
     <string name="loading_2">Loading..</string>
     <string name="loading_3">Loading...</string>
     <string name="skip">Skip</string>
+<string name="error_no_inquiry">Please select inquiry type</string>
 
+    <string name="inquiry_sent">Your inquiry has been sent!</string>
+
+    <string name="error_no_subject">Please input subject</string>
+    <string name="error_no_message">Please input message</string>
     <string name="latest_news">Latest News</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

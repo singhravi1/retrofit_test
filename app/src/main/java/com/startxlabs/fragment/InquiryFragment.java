@@ -2,6 +2,7 @@ package com.startxlabs.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
@@ -51,6 +52,18 @@ public class InquiryFragment extends Fragment {
 
     @OnClick({R.id.btn_submit_inquiry})
     void onClickView(View view) {
-        getActivity().getSupportFragmentManager().popBackStack();
+        if(spinner.getSelectedItemPosition()==0){
+            Snackbar.make(getView(),getString(R.string.error_no_inquiry),Snackbar.LENGTH_SHORT).show();
+        }else if(mEdtSubject.getText().toString().isEmpty()){
+            mEdtSubject.requestFocus();
+            mEdtSubject.setError(getString(R.string.error_no_subject));
+        }else if(mEdtMessage.getText().toString().isEmpty()){
+            mEdtSubject.setError(null);
+            mEdtMessage.requestFocus();
+            mEdtMessage.setError(getString(R.string.error_no_message));
+        }else{
+            mEdtMessage.setError(null);
+            Snackbar.make(getView(),getString(R.string.inquiry_sent),Snackbar.LENGTH_LONG).show();;
+        getActivity().getSupportFragmentManager().popBackStack();}
     }
 }

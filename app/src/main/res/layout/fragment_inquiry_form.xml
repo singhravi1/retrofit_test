@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/form_bg">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_width="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -54,7 +55,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content" android:paddingBottom="10dp"
             android:layout_marginTop="20dp">
 
             <EditText
@@ -63,21 +64,22 @@
                 android:layout_height="wrap_content"
                 android:gravity="bottom|start"
                 android:hint="@string/message"
-                android:imeOptions="actionDone|actionNext"
-                android:inputType="text"
+                android:inputType="textMultiLine" android:imeOptions="actionDone"
                 android:maxLines="6"
                 android:minLines="3"
                 android:textColor="@color/text_normal" />
         </android.support.design.widget.TextInputLayout>
 
+
+    </LinearLayout>
         <Button
             android:id="@+id/btn_submit_inquiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="30dp" android:layout_alignParentBottom="true"
             android:background="@drawable/button_selector"
             android:text="@string/send_inquiry"
             android:textColor="@color/white" />
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+    </RelativeLayout>
+<!--</android.support.design.widget.CoordinatorLayout>-->

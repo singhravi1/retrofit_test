@@ -11,6 +11,6 @@
         android:id="@+id/action_cart"
         android:icon="@mipmap/ic_local_grocery_store_white_24dp"
         android:orderInCategory="1"
-        android:title="@string/action_cart"
+        android:title="@string/action_cart" android:visible="false"
         app:showAsAction="ifRoom" />
 </menu>
