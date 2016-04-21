@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.arcfix.R;
@@ -28,7 +29,10 @@ public class LoginFragment extends Fragment {
     @Bind(R.id.img_scan_qr_code)
     ImageView mImgScanQR;
     private Handler mHandler;
-
+@Bind(R.id.edt_token)
+ EditText mEdtToken;
+    @Bind(R.id.edt_partner_id)
+     EditText mEdtPartnerId;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,7 @@ public class LoginFragment extends Fragment {
     public void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.btn_sign_in:
+//                if(mEd)
                 mBtnSignin.setText(getString(R.string.loading_3));
                 ((BaseActivity) getActivity()).disableUserTouch();
                 mHandler.postDelayed(new Runnable() {

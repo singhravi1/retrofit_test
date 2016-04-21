@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" android:layout_above="@+id/btn_submit_inquiry"
-        android:padding="20dp">
+        android:paddingLeft="20dp" android:paddingRight="20dp" android:paddingTop="10dp">
 
         <TextView
             style="@style/text_heading_22dp"
@@ -34,13 +34,13 @@
             android:id="@+id/spinner_inquiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:entries="@array/type_inquiry"></android.support.v7.widget.AppCompatSpinner>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <EditText
                 android:id="@+id/edt_subject_inquiry"
@@ -56,7 +56,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:paddingBottom="10dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <EditText
                 android:id="@+id/edt_message_inquiry"
@@ -76,8 +76,8 @@
             android:id="@+id/btn_submit_inquiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="80dp"
-            android:layout_marginTop="30dp" android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginBottom="70dp"
+            android:layout_marginTop="10dp" android:layout_alignParentBottom="true"
             android:background="@drawable/button_selector"
             android:text="@string/send_inquiry"
             android:textColor="@color/white" />

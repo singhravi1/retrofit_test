@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arcfix.R;
+import com.startxlabs.activity.MainActivity;
 import com.startxlabs.adapter.HomeTabPagerAdapter;
 
 import butterknife.Bind;
@@ -36,6 +37,7 @@ public class FragmentTabsHome extends Fragment {
         super.onResume();
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
+        ((MainActivity) getActivity()).fabInitiateChat.setVisibility(View.VISIBLE);
     }
 
     @Nullable

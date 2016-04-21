@@ -206,7 +206,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         if (mAdapter == null) {
             mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
         } else {
-            mAdapter.setData(data);
+//            mAdapter.setData(data);
             mAdapter.notifyDataSetChanged();
         }
         if (mItemTouchHelper == null) {

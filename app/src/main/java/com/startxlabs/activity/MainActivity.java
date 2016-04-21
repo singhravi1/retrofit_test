@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.fab)
-    FloatingActionButton fabInitiateChat;
+    public FloatingActionButton fabInitiateChat;
 
     @Bind(R.id.floating_inquiry)
     FloatingActionButton mFabSendInquiry;

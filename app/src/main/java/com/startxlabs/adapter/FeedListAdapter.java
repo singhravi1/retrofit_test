@@ -53,7 +53,11 @@ public class FeedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void setData(MainResponse data) {
-        this.data = data;
+        if( this.data!=null&&this.data.getItems()!=null){
+            this.data.getItems().clear();
+            this.data.getItems().addAll(data.getItems());
+        }else{
+        this.data = data;}
     }
 
     @Override
