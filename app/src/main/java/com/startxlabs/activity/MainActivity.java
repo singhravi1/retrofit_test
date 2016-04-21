@@ -26,14 +26,17 @@ import com.startxlabs.fragment.InquiryFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.fab)
-    FloatingActionButton fab;
+    FloatingActionButton fabInitiateChat;
 
+    @Bind(R.id.floating_inquiry)
+    FloatingActionButton mFabSendInquiry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,7 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabInitiateChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ChatActivity.class));
@@ -60,18 +63,27 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if (savedInstanceState == null) {
-            fab.setVisibility(View.VISIBLE);
+            fabInitiateChat.setVisibility(View.VISIBLE);
             replaceFragment(FragmentTabsHome.class.getName(), FragmentTabsHome.class.getName(), null, null);
         }
         startActivity(new Intent(this, LatestNewsActivity.class));
     }
 
+@OnClick({R.id.floating_inquiry})
+void onViewClick(View view){
 
+}
     public void replaceFragment(String fName, String tag, String backstaktag, Bundle data) {
         if (fName.equalsIgnoreCase(InquiryFragment.class.getName()) || fName.equalsIgnoreCase(ChatTabFragment.class.getName())||fName.equalsIgnoreCase(AppBrowserFragment.class.getName())) {
-            fab.setVisibility(View.GONE);
+            fabInitiateChat.setVisibility(View.GONE);
+            if(fName.equalsIgnoreCase(AppBrowserFragment.class.getName())){
+                mFabSendInquiry.setVisibility(View.VISIBLE);
+            }else{
+                mFabSendInquiry.setVisibility(View.GONE);
+            }
+
         } else {
-            fab.setVisibility(View.VISIBLE);
+            fabInitiateChat.setVisibility(View.VISIBLE);
         }
         Fragment fragment = Fragment.instantiate(this, fName, data);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

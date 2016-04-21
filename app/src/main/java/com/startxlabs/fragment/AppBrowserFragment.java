@@ -26,8 +26,6 @@ public class AppBrowserFragment extends Fragment {
     public final String KEY_WEBVIEW_URL_DATA = "web_data_argument";
     @Bind(R.id.webview_app)
     WebView mWebView;
-    @Bind(R.id.floating_inquiry)
-    FloatingActionButton mFloating;
 
     private String mUrl = "http://www.google.com";
 
@@ -44,10 +42,7 @@ public class AppBrowserFragment extends Fragment {
         return v;
     }
 
-    @OnClick({R.id.floating_inquiry})
-    void onViewClick(View view) {
-        //TODO: launch fragment on click
-    }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
