@@ -162,8 +162,12 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                 mProgressBar.setVisibility(View.GONE);
                 if (response != null && response.body() != null) {
 
-                    if (data == null) {
-                        data = response.body();
+                    if (data == null || (data != null && data.getItems() != null && data.getItems().size() == 0)) {
+                        if (data == null || (data != null && data.getItems() == null)) {
+                            data = response.body();
+                        } else {
+                            data.getItems().addAll(response.body().getItems());
+                        }
                         Item itemLogin = new Item();
                         Basic basicLogin = new Basic();
                         basicLogin.setTitle("Login");
@@ -232,7 +236,11 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
     @Override
     public void onRefresh() {
         loading = true;
+        if (data != null && data.getItems() != null) {
+            data.getItems().clear();
+        }
         getData(false);
+
     }
 
     public void setRefresing(boolean refresh) {

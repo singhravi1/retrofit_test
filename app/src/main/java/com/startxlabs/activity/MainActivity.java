@@ -32,11 +32,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Bind(R.id.fab)
-    public FloatingActionButton fabInitiateChat;
 
-    @Bind(R.id.floating_inquiry)
-   public  FloatingActionButton mFabSendInquiry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +40,10 @@ public class MainActivity extends BaseActivity
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fabInitiateChat=(FloatingActionButton) findViewById(R.id.fab);
+        mFabSendInquiry=(FloatingActionButton) findViewById(R.id.floating_inquiry);
+
 
         fabInitiateChat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +69,7 @@ public class MainActivity extends BaseActivity
         startActivity(new Intent(this, LatestNewsActivity.class));
     }
 
-@OnClick({R.id.floating_inquiry})
-void onViewClick(View view){
 
-}
     public void replaceFragment(String fName, String tag, String backstaktag, Bundle data) {
         if (fName.equalsIgnoreCase(InquiryFragment.class.getName()) || fName.equalsIgnoreCase(ChatTabFragment.class.getName())||fName.equalsIgnoreCase(AppBrowserFragment.class.getName())) {
             fabInitiateChat.setVisibility(View.GONE);
