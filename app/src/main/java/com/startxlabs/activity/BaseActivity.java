@@ -1,6 +1,8 @@
 package com.startxlabs.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -21,8 +23,17 @@ public class BaseActivity extends AppCompatActivity {
 
     public FloatingActionButton fabInitiateChat;
 
-
+private Handler mHandler;
+    protected boolean isLive;
     public  FloatingActionButton mFabSendInquiry;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mHandler=new Handler();
+        isLive=true;
+    }
+
     public void replaceFragment(String fName, String tag, String backstaktag, Bundle data) {
 
         Fragment fragment = Fragment.instantiate(this, fName, data);
@@ -33,6 +44,14 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if(isFinishing()){
+            isLive=false;
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         onBackPress();
     }
@@ -40,14 +59,22 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPress() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             getSupportFragmentManager().popBackStack();
-            if(getSupportFragmentManager().findFragmentById(R.id.content_main)!=null
-                    &&getSupportFragmentManager().findFragmentById(R.id.content_main) instanceof FragmentTabsHome){
-                manageFloatingButton(true,false);
-            }else if(getSupportFragmentManager().findFragmentById(R.id.content_main)!=null&&getSupportFragmentManager().findFragmentById(R.id.content_main) instanceof AppBrowserFragment){
-                manageFloatingButton(false,false);
-            }else{
-                manageFloatingButton(false,true);
-            }
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                 if(isLive){
+                     if(getSupportFragmentManager().findFragmentById(R.id.content_main)!=null
+                             &&getSupportFragmentManager().findFragmentById(R.id.content_main) instanceof FragmentTabsHome){
+                         manageFloatingButton(true,false);
+                     }else if(getSupportFragmentManager().findFragmentById(R.id.content_main)!=null&&getSupportFragmentManager().findFragmentById(R.id.content_main) instanceof AppBrowserFragment){
+                         manageFloatingButton(false,false);
+                     }else{
+                         manageFloatingButton(false,true);
+                     }
+                 }
+                }
+            },200);
+
         } else {
             finish();
         }

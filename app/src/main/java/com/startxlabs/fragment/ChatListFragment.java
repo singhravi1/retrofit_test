@@ -41,15 +41,22 @@ public class ChatListFragment extends BaseChatListFragment {
     @Override
     protected void setViewData() {
         super.setViewData();
-        setAdapter();
+        setAdapter(true);
     }
 
     @Override
-    protected void setAdapter() {
-        super.setAdapter();
+    protected void setAdapter(boolean setAdapter) {
+        super.setAdapter(setAdapter);
         mProgressBar.setVisibility(View.GONE);
+        if(mAdapter==null){
         mAdapter = new ChatListAdapter(getActivity(), onClick, null);
+            mListView.setAdapter(mAdapter);
+        }else{
+            mAdapter.notifyDataSetChanged();
+        }
+        if(setAdapter){
         mListView.setAdapter(mAdapter);
+        }
     }
 }
 

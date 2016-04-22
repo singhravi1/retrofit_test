@@ -89,8 +89,8 @@ public class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnR
         }
 
     }
-
-    protected void setAdapter() {
+//to set adapter if view recreated
+    protected void setAdapter(boolean setAdapter) {
 
 
     }

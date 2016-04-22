@@ -48,13 +48,20 @@ public class ChatFragment extends BaseListFragment {
     public void setViewData() {
 
         mProgressBar.setVisibility(View.GONE);
-        setAdapter();
+        setAdapter(true);
     }
 
     @Override
-    protected void setAdapter() {
-        mAdapter = new ChatAdapter(getActivity(), null, null);
-        mListView.setAdapter(mAdapter);
+    protected void setAdapter(boolean setAdapter) {
+        if(mAdapter==null) {
+            mAdapter = new ChatAdapter(getActivity(), null, null);
+            mListView.setAdapter(mAdapter);
+        }else{
+            mAdapter.notifyDataSetChanged();
+        }
+        if(setAdapter){
+            mListView.setAdapter(mAdapter);
+        }
     }
 
     @Override

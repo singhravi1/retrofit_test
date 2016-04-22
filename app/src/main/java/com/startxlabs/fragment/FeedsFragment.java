@@ -1,5 +1,6 @@
 package com.startxlabs.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -137,9 +138,14 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         if (data == null) {
             getData(true);
         } else {
-            setAdapter();
+            setAdapter(true);
         }
         return feedView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     @Override
@@ -183,7 +189,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
                     } else {
                         data.getItems().addAll(response.body().getItems());
                     }
-                    setAdapter();
+                    setAdapter(false);
                 } else {
                     Snackbar.make(getView(), response.message(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
 //                    setAdapter();//set dummy adapter
@@ -205,7 +211,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         });
     }
 
-    void setAdapter() {
+    void setAdapter(boolean setAdapter) {
         mProgressBar.setVisibility(View.GONE);
         if (mAdapter == null) {
             mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
@@ -214,12 +220,15 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
 //            mAdapter.setData(data);
             mAdapter.notifyDataSetChanged();
         }
-        if (mItemTouchHelper == null) {
+        if (mItemTouchHelper == null||setAdapter) {
             ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
             mItemTouchHelper = new ItemTouchHelper(callback);
 
             mItemTouchHelper.attachToRecyclerView(mListView);
 
+        }
+        if(setAdapter){
+            mListView.setAdapter(mAdapter);
         }
 
 //        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
@@ -227,6 +236,8 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
 
 
     }
+
+
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {

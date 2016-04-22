@@ -60,8 +60,8 @@
 
                         <TextView
                             style="@style/text_normal_14dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" android:id="@+id/txt_chat_recieved"
+                            android:layout_height="wrap_content" android:textColor="@color/chat_text"
                             android:layout_marginBottom="10dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
                             android:layout_marginTop="10dp"
                             android:text="Consectetur adipising elit do sed?" />
@@ -86,7 +86,8 @@
 
                         <TextView
                             android:id="@+id/txt_sender_sent_image_caption"
-                            style="@style/text_normal_14dp"
+                            style="@style/text_normal_11dp"
+                            android:textStyle="bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
@@ -207,12 +208,12 @@
                         </LinearLayout>
 
                         <TextView
-                            style="@style/text_normal_14dp"
+                            style="@style/text_normal_14dp" android:id="@+id/txt_chat_sent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
-
+android:textColor="@color/chat_text"
                             android:layout_marginLeft="5dp" android:layout_marginRight="5dp"
                             android:text="Consectetur adipising elit do sed?" />
                     </LinearLayout>
@@ -235,7 +236,8 @@
 
                         <TextView
                             android:id="@+id/txt_receiver_sent_image_caption"
-                            style="@style/text_normal_14dp"
+                            style="@style/text_normal_11dp"
+                            android:textStyle="bold"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
