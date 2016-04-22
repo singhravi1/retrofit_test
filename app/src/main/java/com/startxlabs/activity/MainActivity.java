@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity
     public FloatingActionButton fabInitiateChat;
 
     @Bind(R.id.floating_inquiry)
-    FloatingActionButton mFabSendInquiry;
+   public  FloatingActionButton mFabSendInquiry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

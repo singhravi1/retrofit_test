@@ -51,7 +51,14 @@ public class LoginFragment extends Fragment {
     public void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.btn_sign_in:
-//                if(mEd)
+                if(mEdtPartnerId.getText().toString().isEmpty()){
+                    mEdtPartnerId.requestFocus();
+                    mEdtPartnerId.setError(getString(R.string.error_partner_id));
+                }else if(mEdtToken.getText().toString().isEmpty()){
+                    mEdtPartnerId.setError(null);
+                    mEdtToken.requestFocus();
+                    mEdtToken.setError(getString(R.string.error_token));
+                }else{
                 mBtnSignin.setText(getString(R.string.loading_3));
                 ((BaseActivity) getActivity()).disableUserTouch();
                 mHandler.postDelayed(new Runnable() {
@@ -63,7 +70,7 @@ public class LoginFragment extends Fragment {
                             ((BaseActivity) getActivity()).replaceFragment(AppIntroViewPagerFragment.class.getName(), AppIntroViewPagerFragment.class.getName(), null, null);
                         }
                     }
-                }, 2000);
+                }, 2000);}
                 break;
             case R.id.img_scan_qr_code:
                 startActivity(new Intent(getActivity(), DecoderActivity.class));

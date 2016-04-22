@@ -16,6 +16,10 @@
     <string name="loading_1">Loading.</string>
     <string name="loading_2">Loading..</string>
     <string name="loading_3">Loading...</string>
+
+    <string name="error_partner_id">Input partner Id</string>
+
+    <string name="error_token">Input Token</string>
     <string name="skip">Skip</string>
 <string name="error_no_inquiry">Please select inquiry type</string>
 
@@ -99,5 +103,7 @@
     </string-array>
 
     <string name="error_player">Error in youtube player</string>
+    <string-array name="dummy_email_array">
+        <item>peterpeterson@gmail.com</item></string-array>
 </resources>
 

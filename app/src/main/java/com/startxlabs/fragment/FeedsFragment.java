@@ -205,6 +205,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
         mProgressBar.setVisibility(View.GONE);
         if (mAdapter == null) {
             mAdapter = new FeedListAdapter(getActivity(), onClick, data, this, callback);
+            mListView.setAdapter(mAdapter);
         } else {
 //            mAdapter.setData(data);
             mAdapter.notifyDataSetChanged();
@@ -216,7 +217,7 @@ public class FeedsFragment extends Fragment implements OnStartDragListener, Swip
             mItemTouchHelper.attachToRecyclerView(mListView);
 
         }
-        mListView.setAdapter(mAdapter);
+
 //        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
 //        SlideInBottomAnimationAdapter scaleAdapter = new SlideInBottomAnimationAdapter(alphaAdapter);
 

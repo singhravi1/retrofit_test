@@ -38,6 +38,7 @@ public class FragmentTabsHome extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
         ((MainActivity) getActivity()).fabInitiateChat.setVisibility(View.VISIBLE);
+        ((MainActivity) getActivity()).mFabSendInquiry.setVisibility(View.GONE);
     }
 
     @Nullable
@@ -51,7 +52,7 @@ public class FragmentTabsHome extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(new HomeTabPagerAdapter(getChildFragmentManager(),
                 getActivity()));
         mTabLayout.setupWithViewPager(mViewPager);
