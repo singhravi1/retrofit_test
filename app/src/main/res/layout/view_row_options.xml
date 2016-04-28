@@ -22,6 +22,7 @@
             style="@style/text_normal_11dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center" android:paddingTop="7dp" android:paddingBottom="7dp"
             android:layout_marginLeft="5dp"
             android:text="@string/favorite" />
     </LinearLayout>
@@ -47,7 +48,7 @@
 
         <TextView
             style="@style/text_normal_11dp"
-            android:layout_width="wrap_content"
+            android:layout_width="wrap_content" android:gravity="center" android:paddingTop="7dp" android:paddingBottom="7dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="@string/share" />

@@ -31,14 +31,20 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/txt_sender_name"
+                style="@style/text_heading_20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="18dp"
+                android:text="Adam"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txt_inquiry_type"
                 style="@style/text_normal_14dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Adam"
-                android:textStyle="bold" />
+                android:text="Type of Inquiry - Subject" android:textColor="@color/light_grey"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txt_time"
@@ -55,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/bg_oval_orange"
             android:gravity="center"
             android:paddingBottom="2dp"
