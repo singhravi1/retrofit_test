@@ -1,5 +1,6 @@
 package com.startxlabs.activity;
 
+import android.accounts.AccountManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -50,7 +51,7 @@ public class PinActivity extends BaseActivity {
 
                 progressBar.setVisibility(View.GONE);
                 if (response != null && response.body() != null) {
-                    txtPin.setText(response.body().getPin());
+                    setData(response.body());
                 } else {
                     Snackbar.make(progressBar,"No data to display", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
@@ -64,5 +65,11 @@ public class PinActivity extends BaseActivity {
                 Snackbar.make(progressBar, t.getMessage(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+    }
+    void setData(PinResponse response){
+        txtPin.setText(response.getPin());
+        AccountManager manager = AccountManager.get(this);
+        if(manager!=null&&manager.getAccounts()!=null&&manager.getAccounts().length>0)
+        manager.setUserData(manager.getAccounts()[0], "token", response.getToken());
     }
 }

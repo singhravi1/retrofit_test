@@ -63,7 +63,6 @@
 
     <style name="TextAppearance.FontPath" parent="android:TextAppearance">
         <!-- Custom Attr-->
-        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
     </style>
 
     <style name="card_style">

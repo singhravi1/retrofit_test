@@ -7,7 +7,12 @@
     <TextView
         android:id="@+id/txt_pin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="Pin will be displayed here!"
+        android:textColor="@android:color/black" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
