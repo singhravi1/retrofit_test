@@ -61,7 +61,7 @@ public class PinActivity extends BaseActivity {
 
             @Override
             public void onFailure(Throwable t) {
-
+                progressBar.setVisibility(View.GONE);
                 Snackbar.make(progressBar, t.getMessage(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
