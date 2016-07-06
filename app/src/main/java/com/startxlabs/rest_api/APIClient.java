@@ -11,7 +11,7 @@ import retrofit.Retrofit;
 public class APIClient {
     private static APIClient instance;
     private static OkHttpClient client;
-    private String baseUrl = "http://aeapp.herokuapp.com/";
+    private String baseUrl = "http://bebetrack.com/";
 
     public static synchronized APIClient getInstance() {
         if (instance == null) {

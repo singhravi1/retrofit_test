@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Arcfix</string>
+    <string name="app_name">ken Demo</string>
     <string name="lbl_company_name">Company Name</string>
 
     <string name="lbl_register_device">Register Device</string>
